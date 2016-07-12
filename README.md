@@ -46,4 +46,5 @@
 
 * [Мова програмування Python](https://www.python.org)
 * [Мікрофреймворк Flask](http://flask.pocoo.org/)
+* [Синхронізація форкнутого репозиторія](https://help.github.com/articles/syncing-a-fork/)
 
