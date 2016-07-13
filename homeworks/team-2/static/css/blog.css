@@ -1,0 +1,157 @@
+/*# sourceMappingURL=style.css.map */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+a {
+	text-decoration: none;
+	color: black;
+}
+
+.page-wrap {
+	max-width: 750px;
+	height: 100%;
+	margin-bottom: -100px;	
+}
+.page-wrap:after {
+  content: "";
+  display: block;
+}
+header {
+	height: 255px;
+	background-color: #3f51b5;
+}
+header h1 {
+	font-family: 'Roboto', sans-serif;
+	font-size: 94px;	
+	font-weight: bold;
+	color: white;
+	padding: 80px 0 0 180px;
+}
+
+
+.block-post {
+	max-width: 640px;
+	display: block;
+	margin: 0 auto;
+	padding: 50px 0;
+}
+.block-post h1 {
+	font-family: 'Roboto', sans-serif;
+	font-size: 52px;
+	padding: 54px 0 30px 0;
+}
+.block-post p {
+	font-family: 'Roboto', sans-serif;
+	font-size: 32px;
+	}
+.block-post h2 {
+	font-family: 'Roboto', sans-serif;
+    font-size: 28px;
+    color: #999999;
+    padding-bottom: 30px;
+}
+footer {
+	height: 100px;
+}
+footer p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 28px;
+    text-align: center;
+    padding-top: 30px;
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+
+/* post */
+
+
+.header-wrap img {
+    padding: 30px 30px 0 25px;
+}
+
+
+
+.header-title h2 a {
+	display: inline-block;
+	padding: 30px 0 0 70px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 64px;
+    color: white;
+    text-align: left;
+
+}
+.header-title h2 a:before {
+	display: inline-block;
+    content: url(img/back-btn.png);
+    padding: 30px 15px 0 -20px;
+}
+
+
+/* add new post */
+
+.header-add-new-post {
+	background-color: #4caf50;
+
+}
+.header-add-new-post h1 {
+    padding: 60px 0 30px 150px;
+}
+.form-add-new-post p {
+	font-family: 'Roboto', sans-serif;
+    font-size: 52px;
+    padding: 50px 0 0 0;
+}
+.form-add-new-post input[type="text"] {
+    border: 0;
+    border-bottom: 2px solid black;
+    outline: 0;
+    width: 615px;
+}
+.form-add-new-post textarea {
+	width: 615px;
+	height: 400px;
+	border: 2px solid black;
+}
+
+
+.add-button {
+	margin: -25px 80px 0 0;
+	float: right;
+	background-color: white;
+	border-radius: 85px;
+}
+
+.hidden {
+	visibility: hidden;
+}
+
+
+
+
+
+
+
+
+

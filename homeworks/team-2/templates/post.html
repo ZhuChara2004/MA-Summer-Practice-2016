@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Blog</title>
+        <link rel="stylesheet" type="text/css" href= "{{ url_for('static',filename='css/blog.css') }}" media="screen, handheld" />
+        <link rel="stylesheet" type="text/css" href="enhanced.css" media="screen  and (min-width: 40.5em)" />
+    </head>
+    <body class="page-wrap">
+        <header class="header-wrap">
+            <div class="header-title">
+                <h2><a href="/">{{ post['title'] }}</a></h2>
+            </div>
+            <a href="/del/{{ post['pid'] }}" method="post">
+                <input class="hidden" type="submit" value="">
+                <svg class="add-button" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                  width="114.000000pt" height="115.000000pt" viewBox="0 0 114.000000 115.000000"
+                  preserveAspectRatio="xMidYMid meet">
+                  <g transform="translate(0.000000,115.000000) scale(0.100000,-0.100000)"
+                      fill="#ff5252" stroke="none">
+                        <path d="M436 1134 c-187 -45 -345 -196 -412 -394 -26 -77 -26 -253 0 -330 32
+                            -96 79 -173 146 -240 306 -307 804 -180 946 240 26 77 26 253 0 330 -84 250
+                            -302 411 -551 409 -38 0 -96 -7 -129 -15z m164 -454 l0 -80 80 0 80 0 0 -30 0
+                            -30 -80 0 -80 0 0 -80 0 -80 -30 0 -30 0 0 80 0 80 -80 0 -80 0 0 30 0 30 80
+                            0 80 0 0 80 0 80 30 0 30 0 0 -80z"/>
+                    </g>
+                </svg>
+            </a>
+        </header>
+        <section class="block-post">
+            <p>{{ post['body'] }}</p>
+        </section>
+        <footer>
+            <p>© 2016 Masters Academy</p>
+        </footer>
+    </body>
+</html>

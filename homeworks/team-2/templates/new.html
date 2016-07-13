@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Blog</title>
+        <link rel="stylesheet" type="text/css" href= "{{ url_for('static',filename='css/blog.css') }}" media="screen, handheld" />
+        <link rel="stylesheet" type="text/css" href="enhanced.css" media="screen  and (min-width: 40.5em)" />
+    </head>
+    <body class="page-wrap">
+        <form action="/new_py" method="post">
+            <header class="header-add-new-post">
+                <h1>New Post</h1>
+                <label>
+                    <input class="hidden" type="submit" value="">
+                    <svg class="add-button" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                        width="114.000000pt" height="115.000000pt" viewBox="0 0 114.000000 115.000000"
+                        preserveAspectRatio="xMidYMid meet">
+                        <g transform="translate(0.000000,115.000000) scale(0.100000,-0.100000)"
+                            fill="#ff5252" stroke="none">
+                            <path d="M436 1134 c-187 -45 -345 -196 -412 -394 -26 -77 -26 -253 0 -330 32
+                                -96 79 -173 146 -240 306 -307 804 -180 946 240 26 77 26 253 0 330 -84 250
+                                -302 411 -551 409 -38 0 -96 -7 -129 -15z m359 -404 c19 -21 17 -23 -135 -175
+                                -85 -85 -159 -155 -165 -155 -5 0 -42 32 -82 72 -68 68 -72 73 -56 90 24 26
+                                32 23 88 -32 l50 -50 135 135 c74 74 137 135 141 135 3 0 14 -9 24 -20z"/>
+                        </g>
+                    </svg>
+                </label>
+            </header>
+            <section class="block-post">
+                <fildset class="form-add-new-post">
+                    <p><label>Title</label></p>
+                    <p><input name="title" type="text"></p>
+                    <p><label>Description</label></p>
+                    <p><textarea name="comment"></textarea></p>
+                </fildset>
+            </section>
+        </form>
+        <footer>
+            <p>© 2016 Masters Academy</p>
+        </footer>
+    </body>
+</html>
