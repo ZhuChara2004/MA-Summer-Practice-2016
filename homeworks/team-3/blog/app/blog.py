@@ -26,3 +26,16 @@ def post():
         db.session.add(post)
         db.session.commit()
     return redirect(url_for('/view'))
+
+@blog.route('/edit', methods=['POST']) #not work
+def edit():
+    from post import Post
+    id = None
+    post = None
+    if request.method == 'POST':
+        id = request.form['id']
+        post = Post.query.get(id)
+        post.title = request.form['title']
+        post.description = request.form['description']
+        db.session.commit()
+    return redirect(url_for('/post/view'))
