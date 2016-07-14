@@ -1,0 +1,164 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,700);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+ul {
+  list-style: none; }
+  ul li {
+    list-style: none; }
+
+a {
+  text-decoration: none; }
+
+.content-wrap {
+  display: table;
+  width: 100%;
+  max-width: 900px;
+  height: 100%;
+  margin: auto;
+  padding: 15px; }
+
+.vert-align {
+  display: table-cell;
+  vertical-align: middle; }
+
+.name-field, .name-article > a, .name-article {
+  font: 400 35px Roboto;
+  color: #000; }
+  @media (min-width: 768px) {
+    .name-field, .name-article > a, .name-article {
+      font-size: 52px; } }
+
+.name-article > a:hover {
+  text-decoration: underline; }
+
+.light-text {
+  font: 300 23px/27px Roboto;
+  color: #000; }
+  @media (min-width: 768px) {
+    .light-text {
+      font-size: 32px;
+      line-height: 42px; } }
+
+.date-article {
+  font: 400 22px/27px Roboto;
+  color: #999;
+  padding: 10px 0; }
+  @media (min-width: 768px) {
+    .date-article {
+      font-size: 28px;
+      line-height: 42px; } }
+
+.text-center {
+  text-align: center; }
+
+.header {
+  background: #3f51b5;
+  height: 150px; }
+  @media (min-width: 768px) {
+    .header {
+      height: 250px; } }
+  .header .content-wrap {
+    position: relative;
+    text-align: center; }
+    @media (min-width: 768px) {
+      .header .content-wrap {
+        text-align: left;
+        padding-left: 120px; } }
+    .header .content-wrap .title-page {
+      font: 700 60px Roboto;
+      color: #f6f6f6; }
+      @media (min-width: 768px) {
+        .header .content-wrap .title-page {
+          font-size: 94px; } }
+    .header .content-wrap .title-article-page {
+      font: 700 30px/40px Roboto;
+      color: #f6f6f6; }
+      @media (min-width: 600px) {
+        .header .content-wrap .title-article-page {
+          font-size: 42px;
+          line-height: 50px;
+          padding-right: 30px; } }
+      @media (min-width: 768px) {
+        .header .content-wrap .title-article-page {
+          font-size: 64px;
+          line-height: 75px;
+          padding-right: 70px; } }
+    .header .content-wrap .btn-header, .header .content-wrap .btn-back {
+      display: block;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%; }
+      @media (min-width: 768px) {
+        .header .content-wrap .btn-header, .header .content-wrap .btn-back {
+          width: 114px;
+          height: 114px; } }
+    .header .content-wrap .btn-back {
+      position: relative;
+      margin-top: 20px; }
+      @media (min-width: 768px) {
+        .header .content-wrap .btn-back {
+          margin: 56px 30px 56px -75px; } }
+    .header .content-wrap .btn-header {
+      position: absolute;
+      right: 30px;
+      bottom: -35px;
+      background: #ff5252; }
+      @media (min-width: 768px) {
+        .header .content-wrap .btn-header {
+          right: 70px;
+          bottom: -52px; } }
+    .header .content-wrap .btn-edit {
+      right: 110px; }
+      @media (min-width: 768px) {
+        .header .content-wrap .btn-edit {
+          right: 200px; } }
+    .header .content-wrap svg {
+      position: absolute;
+      fill: #fff;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto; }
+
+.header.new-article {
+  background: #4caf50; }
+
+.stream-blog, .add-new-article, .article-description {
+  padding: 40px 0 10px; }
+  .stream-blog .article, .stream-blog .form-article, .add-new-article .article, .add-new-article .form-article, .article-description .article, .article-description .form-article {
+    padding: 0; }
+    @media (min-width: 768px) {
+      .stream-blog .article, .stream-blog .form-article, .add-new-article .article, .add-new-article .form-article, .article-description .article, .article-description .form-article {
+        padding: 15px 0; } }
+  .stream-blog label, .stream-blog input, .stream-blog textarea, .add-new-article label, .add-new-article input, .add-new-article textarea, .article-description label, .article-description input, .article-description textarea {
+    display: block; }
+  .stream-blog input, .stream-blog textarea, .add-new-article input, .add-new-article textarea, .article-description input, .article-description textarea {
+    width: 100%;
+    font: 300 20px Roboto;
+    color: #000;
+    margin-top: 15px;
+    margin-bottom: 30px;
+    padding: 15px;
+    border: 2px solid #010101; }
+    @media (min-width: 768px) {
+      .stream-blog input, .stream-blog textarea, .add-new-article input, .add-new-article textarea, .article-description input, .article-description textarea {
+        font-size: 32px; } }
+  .stream-blog input, .add-new-article input, .article-description input {
+    border: none;
+    border-bottom: 2px solid #010101; }
+
+.footer {
+  height: 100px; }
+  @media (min-width: 768px) {
+    .footer {
+      height: 160px; } }
+  .footer .copy {
+    font: 400 22px Roboto;
+    color: #000; }
+    @media (min-width: 768px) {
+      .footer .copy {
+        font-size: 28px; } }
