@@ -39,3 +39,14 @@ def edit():
         post.description = request.form['description']
         db.session.commit()
     return redirect(url_for('/post/view'))
+
+@blog.route('/post/delete', methods=['DELETE', 'POST'])# not work
+def delete():
+    from post import Post
+    id_post = None
+    post = None
+    if request.method == 'DELETE' or request.method == 'POST':
+        id_post = request.form['id']
+        Post.query.filter_by(id=id_post).delete()
+        db.session.commit()
+    return redirect(url_for('/post/view'))
