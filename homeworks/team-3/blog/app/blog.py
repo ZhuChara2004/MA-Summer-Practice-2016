@@ -13,3 +13,16 @@ def view():
     from post import Post
     posts = Post.query.all()
     return render_template('index.html', posts=posts)
+
+@blog.route('/new', methods=['POST'])
+def post():
+    from post import Post
+    title = None
+    description = None
+    if request.method == 'POST':
+        title = request.form['title']
+        description = request.form['description']
+        post = Post(title, description)
+        db.session.add(post)
+        db.session.commit()
+    return redirect(url_for('/view'))
