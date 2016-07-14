@@ -50,3 +50,7 @@ def delete():
         Post.query.filter_by(id=id_post).delete()
         db.session.commit()
     return redirect(url_for('/view'))
+
+
+if __name__ == '__main__':
+    blog.run()
