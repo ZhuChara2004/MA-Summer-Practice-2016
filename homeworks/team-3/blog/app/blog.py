@@ -7,3 +7,9 @@ blog = Flask(__name__)
 blog.config.from_object(os.environ['APP_SETTINGS'])
 blog.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(blog)
+
+@blog.route('/view', methods=['GET'])
+def view():
+    from post import Post
+    posts = Post.query.all()
+    return render_template('index.html', posts=posts)
