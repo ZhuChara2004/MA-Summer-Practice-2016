@@ -7,7 +7,7 @@ from datetime import datetime
 
 # Created by Demian Kurilenko, Anton Lunyov (backend) and Dima Burkatsky (frontend)
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1@localhost/posts'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:12345678@localhost/posts'
 app.config['SECRET_KEY']= 'its_strongly_secret'
 app.config['SECURITY_REGISTERABLE'] = True
 
