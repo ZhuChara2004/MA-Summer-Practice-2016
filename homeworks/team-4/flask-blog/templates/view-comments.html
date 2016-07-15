@@ -21,6 +21,7 @@
             <div class="content-wrap">
                 <p class="date-article">Posted at {{comment.time}}</p>
                 <p class="light-text">{{ comment.text }}</p>
+                <a class="date-article" href = "{{url_for('delete_comment', id = post.id, comment_id = comment.id)}}" >Delete</a>
             </div>
         </div>
         {% endfor %}

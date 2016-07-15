@@ -5,7 +5,7 @@ from datetime import datetime
 
 
 
-# Created by Demian Kurilenko(Backend) and Dima Burkatsky
+# Created by Demian Kurilenko, Anton Lunyov (backend) and Dima Burkatsky (frontend)
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:12345678@localhost/posts'
 app.config['SECRET_KEY']= 'its_strongly_secret'
@@ -110,7 +110,8 @@ def save(id):
     return redirect(url_for('show_entries'))
 @app.route('/<int:id>/delete',methods=['GET'])
 def delete(id):
-    form = Entries.query.filter(Entries.id == id).first()
+    form = Entries.query.filter_by(id = id).first()
+    Comments.query.filter_by(post_id=id).delete()
     db.session.delete(form)
     db.session.commit()
     return redirect(url_for('show_entries'))
@@ -135,6 +136,13 @@ def add_comment(id):
     post = Entries.query.get_or_404(int(id))
     post.comments.append(comment)
     db.session.add(post)
+    db.session.commit()
+    return redirect(url_for('view_comments', id = id))
+
+@app.route('/<int:id>/delete/<int:comment_id>',methods=['GET'])
+def delete_comment(id, comment_id):
+    form = Comments.query.filter_by(id=comment_id).first()
+    db.session.delete(form)
     db.session.commit()
     return redirect(url_for('view_comments', id = id))
 
