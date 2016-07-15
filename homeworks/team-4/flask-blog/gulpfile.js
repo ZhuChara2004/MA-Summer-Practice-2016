@@ -8,7 +8,7 @@ var postcss = require('gulp-postcss'),
 gulp.task('sass', function () {
     return gulp.src('sass/main.sass')
         .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('./css'));
+        .pipe(gulp.dest('./static'));
 });
 
 gulp.task('css', function () {
@@ -16,10 +16,10 @@ gulp.task('css', function () {
         autoprefixer({browsers: ['> 1%', 'last 2 version', 'IE 11']}),
         cssnano()
     ];
-    return gulp.src('css/main.css')
+    return gulp.src('static/main.css')
         .pipe(postcss(processors))
         .pipe(rename("main.min.css"))
-        .pipe(gulp.dest('./css'));
+        .pipe(gulp.dest('./static'));
 });
 
 gulp.task('sass:watch', function () {
