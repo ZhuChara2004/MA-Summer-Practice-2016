@@ -4,7 +4,7 @@ from flask.ext.migrate import Migrate, MigrateCommand
 
 from blog import blog, db
 
-app.config.from_object(os.environ['APP_SETTINGS'])
+blog.config.from_object(os.environ['APP_SETTINGS'])
 
 migrate = Migrate(blog, db)
 manager = Manager(blog)
