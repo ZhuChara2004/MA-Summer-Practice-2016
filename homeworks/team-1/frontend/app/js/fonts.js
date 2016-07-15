@@ -1,11 +1,11 @@
 var FontFaceObserver = require('fontfaceobserver');
 
-var font = new FontFaceObserver('My Family', {
-  weight: 400
-});
+var roboto = new FontFaceObserver('Roboto', {
+        weight: 400
+    })
 
-font.load().then(function () {
-  console.log('Font is available');
+roboto.check().then(function () {
+    document.documentElement.classList.add('roboto');
 }, function () {
-  console.log('Font is not available');
+	console.info('Web font could not be loaded in time. Falling back to system fonts.');
 });
