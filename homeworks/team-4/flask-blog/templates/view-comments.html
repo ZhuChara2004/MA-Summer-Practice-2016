@@ -10,13 +10,13 @@
     <body>
         <header class="header">
             <div class="content-wrap">
-                 <a class="btn-back" href="{{ url_for('show_entries') }}">
+                <a class="btn-back" href="{{ url_for('show_entries') }}">
                     <svg height="48" viewBox="0 0 48 48" width="48" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h48v48H0z" fill="none"/><path d="M40 22H15.66l11.17-11.17L24 8 8 24l16 16 2.83-2.83L15.66 26H40v-4z"/></svg>
                 </a>
                 <h3 class="title-article-page vert-align">Comments for post "{{ post.title }}"</h3>
             </div>
         </header>
-	{% for comment in post.comments.all() %}
+	    {% for comment in post.comments.all() %}
         <div class="article-description">
             <div class="content-wrap">
                 <p class="date-article">Posted at {{comment.time}}</p>
