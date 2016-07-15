@@ -29,6 +29,16 @@
                 <p class="light-text" href = "{{ url_for('view_comments', id = post.id) }}">Show comments</p>
             </div>
         </div>
+        <form class="form-comment">
+            <label class="name-field">
+                Name
+                <input type="text">
+            </label>
+            <label class="name-field">
+                Comment
+                <textarea cols="30" rows="5"></textarea>
+            </label>
+        </form>
         <ul class="list-comments">
             <li>
                 <p class="name">Dmitry</p>
