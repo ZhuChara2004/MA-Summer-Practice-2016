@@ -8,11 +8,13 @@ blog.config.from_object(os.environ['APP_SETTINGS'])
 blog.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(blog)
 
+
 @blog.route('/view', methods=['GET'])
 def view():
     from post import Post
     posts = Post.query.all()
     return render_template('index.html', posts=posts)
+
 
 @blog.route('/new', methods=['POST'])
 def post():
@@ -27,7 +29,8 @@ def post():
         db.session.commit()
     return redirect(url_for('/view'))
 
-@blog.route('/edit', methods=['POST']) #not work
+
+@blog.route('/edit', methods=['POST'])  # not work
 def edit():
     from post import Post
     id = None
@@ -40,7 +43,8 @@ def edit():
         db.session.commit()
     return redirect(url_for('/view'))
 
-@blog.route('/post/delete', methods=['DELETE', 'POST'])# not work
+
+@blog.route('/post/delete', methods=['DELETE', 'POST'])  # not work
 def delete():
     from post import Post
     id_post = None

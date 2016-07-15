@@ -13,6 +13,5 @@ class Comment(db.Model):
         self.body = body
         self.created_at = created_at
 
-
         def __repr__(self):
             return '<Comment %r>' % self.body
