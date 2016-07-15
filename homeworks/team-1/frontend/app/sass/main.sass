@@ -1,0 +1,127 @@
+*
+	padding: 0
+	margin: 0
+
+body
+	background: #fff
+	font: 14px Roboto, sans-serif
+
+a
+	text-decoration: none;
+
+.view-header
+	background-color: #3f51b5
+	width: 100%
+	height: 150px
+
+	h1
+		color: #fff
+		text-align: center
+		line-height: 150px
+		font-size: 48px
+
+.content
+	width: 100%
+	padding-bottom: 90px
+
+
+	svg
+		width: 70px
+		height: 70px
+		background: #ff5252
+		border-radius: 50%
+		float: right
+		margin-top: -73px
+		margin-right: 5%
+
+		&:hover
+			cursor: pointer
+
+.news
+	margin: 35px 5%
+	text-align: justify
+
+	a
+		color: #000
+		font-size: 24px
+		font-weight: bold
+
+		&:hover
+			text-decoration: underline
+
+	.date
+		padding: 10px 0
+		color: #999
+
+footer
+	width: 100%
+	text-align: center
+	padding-bottom: 20px
+
+.create-header
+	width: 100%
+	height: 150px
+	background-color: #4caf50
+
+	h1
+		color: #fff
+		text-align: center
+		line-height: 150px
+		font-size: 48px
+
+.create-content
+	text-align: center
+	margin: 35px 5%
+
+	p
+		text-align: left
+		padding: 20px 0 10px 3%
+		font-size: 28px
+
+	input, textarea
+		width: 95%
+		padding: 5px
+		border-radius: 5px
+		outline: none
+		box-shadow: 0px 0px 3px #ccc, 0 10px 15px #eee inset
+		border: 1px solid #aaa
+
+		&:focus
+			border: 1px solid #6a94ff
+
+.post-header
+	background-color: #3f51b5
+	width: 100%
+	height: 150px
+	
+	.head
+		margin: auto
+		max-width: 400px
+		padding: 0 40px
+
+		h1 
+			color: #fff
+			padding-top: 5px
+			font-size: 180%
+
+		.header-date
+			color: #eee
+			padding-top: 10px
+			width: 70px
+
+		svg
+			width: 40px
+			height: 30px
+			margin-top: 10px
+
+.post-content
+	margin: 35px 5%
+	text-align: justify
+
+input[type=submit]
+	display: none
+
+@media (min-width:768px)
+	.content
+		max-width: 768px
+		margin: auto
