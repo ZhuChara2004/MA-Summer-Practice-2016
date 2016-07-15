@@ -26,7 +26,7 @@
             <div class="content-wrap">
                 <p class="date-article">Posted at {{post.time}}</p>
                 <p class="light-text">{{ post.text }}</p>
-                <a class="light-text" href = "{{ url_for('view_comments', id = post.id) }}">Show comments</p>
+                <p class="light-text" href = "{{ url_for('view_comments', id = post.id) }}">Show comments</p>
             </div>
         </div>
         <footer class="footer">
