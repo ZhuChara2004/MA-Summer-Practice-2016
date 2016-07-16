@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Blog</title>
-        <link href="{{ url_for('static', filename='main.css') }}" rel="stylesheet">
+        <link href="{{ url_for('static', filename='main.min.css') }}" rel="stylesheet">
     </head>
     <body>
         <header class="header">
@@ -24,10 +24,8 @@
                         <h3 class="name-article"><a href={{ entries.id }}>{{ entries.title }}</a></h3>
                         <p class="date-article">Posted at {{entries.time}}</p>
                         <p class="light-text">{{entries.text|safe}}</p>
-                        <a class="date-article" href = "{{url_for('view_comments', id = entries.id)}}">Show comments</p>
                          {% endfor %}
                     </li>
-
                 </ul>
             </div>
         </section>

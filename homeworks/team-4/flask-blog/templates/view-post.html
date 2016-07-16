@@ -5,12 +5,12 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>EditPost</title>
-       <link href="{{ url_for('static', filename='main.css') }}" rel="stylesheet">
+        <link href="{{ url_for('static', filename='main.min.css') }}" rel="stylesheet">
     </head>
     <body>
         <header class="header">
             <div class="content-wrap">
-                 <a class="btn-back" href="{{ url_for('show_entries') }}">
+                <a class="btn-back" href="{{ url_for('show_entries') }}">
                     <svg height="48" viewBox="0 0 48 48" width="48" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h48v48H0z" fill="none"/><path d="M40 22H15.66l11.17-11.17L24 8 8 24l16 16 2.83-2.83L15.66 26H40v-4z"/></svg>
                 </a>
                 <h3 class="title-article-page vert-align">{{ post.title }}</h3>
@@ -26,9 +26,32 @@
             <div class="content-wrap">
                 <p class="date-article">Posted at {{post.time}}</p>
                 <p class="light-text">{{ post.text }}</p>
-                <p class="light-text" href = "{{ url_for('view_comments', id = post.id) }}">Show comments</p>
             </div>
         </div>
+        <form action="{{ url_for('add_comment', id = post.id) }}" method=post class="form-comment">
+                <div class="content-wrap">
+                    <label class="name-field">
+                Name
+                <input type="text" name=name>
+                    </label>
+                    <label class="name-field">Put your comment here
+                        <textarea name=text rows=5 cols=30></textarea>
+                    </label>
+                    <button class="btn-header" input type=submit>>
+                        <svg height="48" viewBox="0 0 48 48" width="48" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h48v48H0z" fill="none"/><path d="M18 32.34L9.66 24l-2.83 2.83L18 38l24-24-2.83-2.83z"/></svg>
+                    </button>
+            </div>
+        </form>
+        <ul class="list-comments">
+              {% for comment in post.comments.all() %}
+            <li>
+                <p class="name">{{comment.name}}</p>
+                <p class="date-post">Posted at {{comment.time}}</p>
+                <p class="comment-text">{{ comment.text }}</p>
+                <a class="date-article" href = "{{url_for('delete_comment', id = post.id, comment_id = comment.id)}}" >Delete</a>
+            </li>
+           {% endfor %}
+        </ul>
         <footer class="footer">
             <div class="content-wrap">
                 <p class="copy text-center vert-align">© 2016 Masters Academy</p>
