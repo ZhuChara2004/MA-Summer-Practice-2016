@@ -19,13 +19,13 @@
         <section class="stream-blog">
             <div class="content-wrap">
                 <ul class="list-blog">
+                    {% for entries in myAll %}
                     <li class="article">
-                         {% for entries in myAll %}
                         <h3 class="name-article"><a href={{ entries.id }}>{{ entries.title }}</a></h3>
                         <p class="date-post">Posted at {{entries.time}}</p>
                         <p class="light-text">{{entries.text|safe}}</p>
-                         {% endfor %}
                     </li>
+                    {% endfor %}
                 </ul>
             </div>
         </section>
