@@ -111,7 +111,9 @@ a {
       right: 30px;
       bottom: -35px;
       background: #ff5252;
-      border: none; }
+      border: none !important; }
+      .header .content-wrap .btn-header:focus {
+        outline: none; }
       @media (min-width: 768px) {
         .header .content-wrap .btn-header {
           right: 70px;
@@ -173,7 +175,9 @@ a {
     height: 80px;
     border-radius: 50%;
     margin-left: 30px;
-    border: none; }
+    border: none !important; }
+    .wrap-comments .add-comment:focus {
+      outline: none; }
     .wrap-comments .add-comment svg {
       position: absolute;
       top: 0;
