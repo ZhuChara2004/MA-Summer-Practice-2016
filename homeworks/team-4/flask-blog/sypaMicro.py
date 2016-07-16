@@ -26,7 +26,7 @@ class Entries(db.Model):  #     for text data base
         self.title = title
         self.text = text
         if time is None:
-            time = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
+            time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         self.time = time
 
 class Comments(db.Model):
@@ -73,7 +73,7 @@ security = Security(app, user_datastore)
 
 @app.route('/')                    #     index page
 def show_entries():
-    myAll = Entries.query.all()
+    myAll = list(reversed(Entries.query.all()))
     return render_template('index.html', entries=Entries,myAll = myAll)
 
 @app.route('/new-post',methods=['POST'])
@@ -134,7 +134,7 @@ def new_comment(id):
 
 @app.route('/<int:id>/save-comment',methods=['POST'])
 def add_comment(id):
-    comment = Comments(request.form['name'],request.form['text'])
+    comment = Comments(request.form['text'], request.form['name'])
     post = Entries.query.get_or_404(int(id))
     post.comments.append(comment)
     db.session.add(post)
