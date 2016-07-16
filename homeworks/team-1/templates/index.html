@@ -10,24 +10,41 @@
 </head>
 <body>
 	<header class="view-header">
-		<h1>Blog</h1>
+		<div class="head-wrapper">
+			<ul class="singin">
+				<li><a href="#">Sing In</a></li>
+				<li><a href="#">Sing Up</a></li>
+			</ul>
+			<h1>Blog</h1>
+		</div>
 	</header>
 	<div class="content">
-		<a href="/create">
-			<svg>
+		<a href="#">
+			<svg class="icon">
 				<symbol id="Layer_1" viewBox="-20 -20 120 120">	
 					<polyline points="61,37 43,37 43,19 37,19 37,37 19,37 19,43 37,43 37,61 43,61 43,43 61,43 " fill="#ffffff"/>
 				</symbol>
 	    		<use xlink:href="#Layer_1"/>
 			</svg>
+
+			<!--
+				Not working
+				<svg class="plus">
+					<use xlink:href="../static/img/1468691144_add-80px.svg#plus"/>
+				</svg>
+			-->
+
 		</a>
-		{% for post in posts %}
-		<div class="news">
-			<a href="/post{{post.pid}}">{{post.title}}</a>
-			<p class="date">{{post.daytime}}</p>
-			<p class="news-text">{{post.body}}</p>
+
+		<div class="post-content">
+			{% for post in posts %}
+			<div class="news">
+				<a href="">{{post.title}}</a>
+				<p class="date">{{post.daytime}}</p>
+				<p class="news-text">{{post.body}}</p>
+			</div>
+			{% endfor %}
 		</div>
-		{% endfor %}
 	</div>
 	<footer>© 2016 Masters Academy</footer>
 </body>

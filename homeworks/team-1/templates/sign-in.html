@@ -9,19 +9,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-	<header class="create-header">
-		<h1>Update post</h1>
+	<header class="sign-header">
+		<h1>Sign In</h1>
 	</header>
 	<div class="content">
-		<div class="icons">
-		<a href="">
-			<svg class="icon-delete">
-					<symbol id="Delete" viewBox="0 0 80 80">	
-						<polyline points="56.971,52.728 44.243,40 56.971,27.272 52.728,23.029 40,35.757 27.272,23.029 23.029,27.272 35.757,40   23.029,52.728 27.272,56.971 40,44.243 52.728,56.971 " fill="#ffffff"/>
-					</symbol>
-		    		<use xlink:href="#Delete"/>
-				</svg>
-		</a>
 		<form action="">
 			<label>
 			<input type="submit" name="new-post">
@@ -31,20 +22,21 @@
 					</symbol>
 		    		<use xlink:href="#Layer_1"/>
 				</svg>
-
+				
 				<!--
 					Not working
 					<svg class="icon">
 						<use xlink:href="../static/img/1468689748_check-mark.svg#check"/>
 					</svg>
 				-->
+
 			</label>
-			</div>
 			<div class="create-content">
-				<p>Title</p>
-				<input type="text">
-				<p>Description</p>
-				<textarea name="description" id="" cols="30" rows="10"></textarea>
+				<p>Login</p>
+				<input type="text" placeholder="Login" class="text">
+				<p>Password</p>
+				<input type="password" placeholder="Password" class="text">
+				<p><label>Remember me <input type="checkbox" checked=""></label></p>
 			</form>
 		</div>
 	</div>
