@@ -26,38 +26,33 @@
             <div class="content-wrap">
                 <p class="date-article">Posted at {{post.time}}</p>
                 <p class="light-text">{{ post.text }}</p>
-                <p class="light-text" href = "{{ url_for('view_comments', id = post.id) }}">Show comments</p>
             </div>
         </div>
         <div class="wrap-comments">
             <div class="content-wrap">
                 <h4 class="name-block">Comments</h4>
-                <a class="add-comment" href="#">
+                <button class="add-comment" type="submit", form="comm_form">
                     <svg fill="#f6f6f6" height="80" viewBox="0 0 80 80" width="80" xmlns="http://www.w3.org/2000/svg"><path d="M61 37H43V19h-6v18H19v6h18v18h6V43h18"/></svg>
-                </a>
-                <form class="form-comment">
+                </button>
+                <form class="form-comment" method=post action="{{ url_for('add_comment', id = post.id) }}" id="comm_form">
                     <label class="name-field">
                         Name
-                        <input type="text">
+                        <input name="title" type="text">
                     </label>
                     <label class="name-field">
                         Comment
-                        <textarea cols="30" rows="5"></textarea>
+                        <textarea name="text" cols="30" rows="5"></textarea>
                     </label>
                 </form>
                 <ul class="list-comments">
+                    {% for comment in post.comments.all() %}
                     <li>
-                        <p class="name">Dmitry</p>
-                        <p class="date-post">1 day ago</p>
-                        <p class="comment-text">Irure mollit est sit labore est deserunt pariatur duis aute laboris cupidatat. Consectetur consequat esse est sit veniam adipisicing ipsum enim irure. Irure mollit est sit labore est deserunt pariatur duis aute laboris cupidatat. Consectetur consequat esse.</p>
+                        <p class="name">{{comment.name}}</p>
+                        <p class="date-post">Posted at {{comment.time}}</p>
+                        <p class="comment-text">{{comment.text}}</p>
                         <a href = "{{url_for('delete_comment', id = post.id, comment_id = comment.id)}}" >Delete</a>
                     </li>
-                    <li>
-                        <p class="name">Anton Lunyov</p>
-                        <p class="date-post">1 day ago</p>
-                        <p class="comment-text">Irure mollit est sit labore est deserunt pariatur duis aute laboris cupidatat. Consectetur consequat esse est sit veniam adipisicing ipsum enim irure. Irure mollit est sit labore est deserunt pariatur duis aute laboris cupidatat. Consectetur consequat esse.</p>
-                        <a href = "{{url_for('delete_comment', id = post.id, comment_id = comment.id)}}" >Delete</a>
-                    </li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>
