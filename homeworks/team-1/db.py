@@ -15,7 +15,7 @@ class post(Base):
     body = Column(String(1024))
 
 
-engine = create_engine('postgresql://root:12124343@localhost/blog')
+engine = create_engine('postgresql://postgres:root@localhost/blog')
 
 Base.metadata.create_all(engine)
 Base.metadata.bind = engine
