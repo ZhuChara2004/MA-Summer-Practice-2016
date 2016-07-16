@@ -85,7 +85,7 @@ footer {
     text-align: left;
     padding: 20px 0 10px 3%;
     font-size: 28px; }
-  .create-content input, .create-content textarea {
+  .create-content input[class=text], .create-content textarea {
     width: 95%;
     padding: 5px;
     -webkit-border-radius: 5px;
@@ -94,8 +94,11 @@ footer {
     -webkit-box-shadow: 0px 0px 3px #ccc, 0 10px 15px #eee inset;
             box-shadow: 0px 0px 3px #ccc, 0 10px 15px #eee inset;
     border: 1px solid #aaa; }
-    .create-content input:focus, .create-content textarea:focus {
+    .create-content input[class=text]:focus, .create-content textarea:focus {
       border: 1px solid #6a94ff; }
+  .create-content input[type=checkbox] {
+    width: 15px;
+    height: 15px; }
   .create-content .sign-up input {
     margin-top: 20px; }
 
