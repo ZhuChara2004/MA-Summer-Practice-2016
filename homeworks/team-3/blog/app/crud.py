@@ -25,3 +25,12 @@ def post_update(db, post_id, new_title, new_body):
     updated_post.updated_at = datetime.now().strftime("%Y.%m.%d %H:%M:$S")
     db.add(updated_post)
     db.commit()
+
+
+def post_delete(db, post_id):
+    post = post_look(db, post_id)
+    comments = post.comments
+    for comment in comments:
+        db.delete(comment)
+    db.delete(post)
+    db.commit()
