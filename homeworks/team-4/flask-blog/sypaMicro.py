@@ -40,7 +40,7 @@ class Comments(db.Model):
         self.text = text
         self.name = name
         if time is None:
-            time = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
+            time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         self.time = time
 # Define models
 roles_users = db.Table('roles_users',
