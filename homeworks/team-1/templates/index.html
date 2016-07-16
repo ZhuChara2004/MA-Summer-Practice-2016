@@ -10,7 +10,13 @@
 </head>
 <body>
 	<header class="view-header">
-		<h1>Blog</h1>
+		<div class="head-wrapper">
+			<ul class="singin">
+				<li><a href="#">Sing In</a></li>
+				<li><a href="#">Sing Up</a></li>
+			</ul>
+			<h1>Blog</h1>
+		</div>
 	</header>
 	<div class="content">
 		<a href="#">
@@ -29,13 +35,16 @@
 			-->
 
 		</a>
-		{% for post in posts %}
-		<div class="news">
-			<a href="">{{post.title}}</a>
-			<p class="date">{{post.daytime}}</p>
-			<p class="news-text">{{post.body}}</p>
+
+		<div class="post-content">
+			{% for post in posts %}
+			<div class="news">
+				<a href="">{{post.title}}</a>
+				<p class="date">{{post.daytime}}</p>
+				<p class="news-text">{{post.body}}</p>
+			</div>
+			{% endfor %}
 		</div>
-		{% endfor %}
 	</div>
 	<footer>© 2016 Masters Academy</footer>
 </body>
