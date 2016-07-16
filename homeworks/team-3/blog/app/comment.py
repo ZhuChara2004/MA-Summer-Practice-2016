@@ -1,3 +1,4 @@
+from _datetime import datetime
 from sqlalchemy import Column, Integer, Text, DateTime, ForeignKey
 from database import Base
 
@@ -12,7 +13,6 @@ class Comment(Base):
 
     def __init__(self, body):
         self.body = body
-        self.created_at = DateTime.utcnow
-
+        self.created_at = datetime.now().strftime("%Y.%m.%d %H:%M:$S")
         def __repr__(self):
             return '<Comment %r>' % self.body

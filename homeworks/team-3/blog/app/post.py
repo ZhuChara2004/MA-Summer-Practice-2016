@@ -1,5 +1,6 @@
 from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, String, Text, DateTime
+from datetime import datetime
 from comment import Comment
 from database import Base
 
@@ -18,8 +19,7 @@ class Post(Base):
     def __init__(self, title, body):
         self.title = title
         self.body = body
-        self.created_at = DateTime.utcnow
-        self.updated_at = DateTime.utcnow
+        self.created_at = datetime.now().strftime("%Y.%m.%d %H:%M:$S")
 
         def __repr__(self):
             return '<Post %r>' % self.title
