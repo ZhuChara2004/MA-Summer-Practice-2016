@@ -6,9 +6,9 @@ var postcss = require('gulp-postcss'),
     cssnano = require('cssnano');
 
 gulp.task('sass', function () {
-    return gulp.src('sass/main.sass')
+    return gulp.src('./flask_blog/sass/main.sass')
         .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('./static'));
+        .pipe(gulp.dest('./flask_blog/static'));
 });
 
 gulp.task('css', function () {
@@ -16,10 +16,10 @@ gulp.task('css', function () {
         autoprefixer({browsers: ['> 1%', 'last 2 version', 'IE 11']}),
         cssnano()
     ];
-    return gulp.src('static/main.css')
+    return gulp.src('./flask_blog/static/main.css')
         .pipe(postcss(processors))
         .pipe(rename("main.min.css"))
-        .pipe(gulp.dest('./static'));
+        .pipe(gulp.dest('./flask_blog/static'));
 });
 
 gulp.task('sass:watch', function () {

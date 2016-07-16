@@ -110,7 +110,8 @@ a {
       position: absolute;
       right: 30px;
       bottom: -35px;
-      background: #ff5252; }
+      background: #ff5252;
+      border: none; }
       @media (min-width: 768px) {
         .header .content-wrap .btn-header {
           right: 70px;
@@ -171,7 +172,8 @@ a {
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    margin-left: 30px; }
+    margin-left: 30px;
+    border: none; }
     .wrap-comments .add-comment svg {
       position: absolute;
       top: 0;
