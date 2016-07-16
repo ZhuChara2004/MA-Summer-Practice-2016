@@ -11,14 +11,14 @@
         <header class="header new-article">
             <div class="content-wrap">
                 <h2 class="title-page vert-align">Edit Post</h2>
-                <button class="btn-header" input type=submit>>
+                <button class="btn-header" type="submit" form="edit_form">
                     <svg height="48" viewBox="0 0 48 48" width="48" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h48v48H0z" fill="none"/><path d="M18 32.34L9.66 24l-2.83 2.83L18 38l24-24-2.83-2.83z"/></svg>
                 </button>
             </div>
         </header>
         <div class="add-new-article">
             <div class="content-wrap">
-                <form action="/{{ id }}/save" method=post class=add-post>
+                <form action="/{{ id }}/save" method=post id="edit_form">
                     <label class="name-field">Title
                         <input type=text size=30 name=title class="light-text" value="{{ fork['title'] }}">
                     </label>
