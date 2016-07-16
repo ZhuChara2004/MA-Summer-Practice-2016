@@ -1,5 +1,6 @@
 from post import Post
 from sqlalchemy import desc
+from datetime import datetime
 
 
 def post_all(db):
@@ -15,3 +16,12 @@ def post_new(db, title, body):
         new_post = Post(title, body)
         db.add(new_post)
         db.commit()
+
+
+def post_update(db, post_id, new_title, new_body):
+    updated_post = post_look(db, post_id)
+    updated_post.title = new_title
+    updated_post.body = new_body
+    updated_post.updated_at = datetime.now().strftime("%Y.%m.%d %H:%M:$S")
+    db.add(updated_post)
+    db.commit()
