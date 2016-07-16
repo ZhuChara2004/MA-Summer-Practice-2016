@@ -7,7 +7,7 @@ from datetime import datetime
 
 # Created by Demian Kurilenko, Anton Lunyov (backend) and Dima Burkatsky (frontend)
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:12345678@localhost/posts'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1@localhost/posts'
 app.config['SECRET_KEY']= 'its_strongly_secret'
 app.config['SECURITY_REGISTERABLE'] = True
 
@@ -31,12 +31,14 @@ class Entries(db.Model):  #     for text data base
 
 class Comments(db.Model):
     id = db.Column(db.Integer, db.Sequence('comm_seq'), primary_key = True)
+    name = db.Column(db.String(16), unique=False)
     text = db.Column(db.String(1000), unique=False)
     time = db.Column(db.DateTime)
     post_id = db.Column(db.Integer, db.ForeignKey('entries.id'))
 
-    def __init__(self, text, time = None):
+    def __init__(self, text, name, time = None):
         self.text = text
+        self.name = name
         if time is None:
             time = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
         self.time = time
@@ -132,19 +134,19 @@ def new_comment(id):
 
 @app.route('/<int:id>/save-comment',methods=['POST'])
 def add_comment(id):
-    comment = Comments(request.form['text'])
+    comment = Comments(request.form['name'],request.form['text'])
     post = Entries.query.get_or_404(int(id))
     post.comments.append(comment)
     db.session.add(post)
     db.session.commit()
-    return redirect(url_for('view_comments', id = id))
+    return redirect(url_for('view', id = id))
 
 @app.route('/<int:id>/delete/<int:comment_id>',methods=['GET'])
 def delete_comment(id, comment_id):
     form = Comments.query.filter_by(id=comment_id).first()
     db.session.delete(form)
     db.session.commit()
-    return redirect(url_for('view_comments', id = id))
+    return redirect(url_for('view', id = id))
 
 
 if __name__ =="__main__":
