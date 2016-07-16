@@ -23,7 +23,7 @@
 		</a>
 		{% for post in posts %}
 		<div class="news">
-			<a href="">{{post.title}}</a>
+			<a href="/post{{post.pid}}">{{post.title}}</a>
 			<p class="date">{{post.daytime}}</p>
 			<p class="news-text">{{post.body}}</p>
 		</div>

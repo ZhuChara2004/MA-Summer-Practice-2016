@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect
-from db import db_all, db_new
+from db import db_all, db_new, db_post
 
 app = Flask(__name__)
 
@@ -22,6 +22,18 @@ def add_post():
     if title:
         db_new(title, body)
     return redirect('/')
+
+
+@app.route('/post<id>', methods=['GET'])
+def get_post(id):
+    post = db_post(id)
+    return render_template('post.html', post=post)
+
+
+@app.route('/update<id>', methods=['GET'])
+def get_post_to_update(id):
+    post = db_post(id)
+    return render_template('update-post.html', post=post)
 
 
 if __name__ == '__main__':
