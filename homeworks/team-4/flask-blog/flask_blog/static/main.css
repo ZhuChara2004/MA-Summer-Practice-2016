@@ -221,15 +221,15 @@ a {
       .wrap-comments .name {
         font-size: 25px; } }
   .wrap-comments .date-post {
-    font-size: 20px;
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 0;
-    line-height: inherit; }
+    font-size: 20px; }
     @media (min-width: 768px) {
       .wrap-comments .date-post {
-        font-size: 25px; } }
+        font-size: 25px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 0;
+        line-height: inherit; } }
   .wrap-comments .comment-text {
     font: 300 15px/18px Roboto;
     padding-top: 10px; }
