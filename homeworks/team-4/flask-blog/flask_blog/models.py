@@ -24,7 +24,7 @@ class Comments(db.Model):
     time = db.Column(db.DateTime)
     post_id = db.Column(db.Integer, db.ForeignKey('entries.id'))
 
-    def __init__(self, text, name, time = None):
+    def __init__(self, name, text, time = None):
         self.text = text
         self.name = name
         if time is None:

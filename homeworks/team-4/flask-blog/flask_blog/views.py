@@ -58,17 +58,9 @@ def view_comments(id):
     post = Entries.query.get_or_404(int(id))
     return render_template('view-comments.html', post = post)
 
-@app.route("/<int:id>/new-comment/", methods=("GET", "POST"))
-def new_comment(id):
-    post = Entries.query.get_or_404(int(id))
-    form = Entries(title=post.title,
-                    text = post.text)
-    db.session.commit()
-    return render_template('new-comment.html', fork=form, id=id)
-
-@app.route('/<int:id>/save-comment',methods=['POST'])
+@app.route('/<int:id>/save-comment',methods=['POST', 'GET'])
 def add_comment(id):
-    comment = Comments(request.form['text'], request.form['name'])
+    comment = Comments(request.form['title'], request.form['text'])
     post = Entries.query.get_or_404(int(id))
     post.comments.append(comment)
     db.session.add(post)
