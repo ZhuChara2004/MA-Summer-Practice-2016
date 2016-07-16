@@ -29,30 +29,38 @@
                 <p class="light-text" href = "{{ url_for('view_comments', id = post.id) }}">Show comments</p>
             </div>
         </div>
-        <form class="form-comment">
-            <label class="name-field">
-                Name
-                <input type="text">
-            </label>
-            <label class="name-field">
-                Comment
-                <textarea cols="30" rows="5"></textarea>
-            </label>
-        </form>
-        <ul class="list-comments">
-            <li>
-                <p class="name">Dmitry</p>
-                <p class="date-post">1 day ago</p>
-                <p class="comment-text">Irure mollit est sit labore est deserunt pariatur duis aute laboris cupidatat. Consectetur consequat esse est sit veniam adipisicing ipsum enim irure. Irure mollit est sit labore est deserunt pariatur duis aute laboris cupidatat. Consectetur consequat esse.</p>
-                <a href = "{{url_for('delete_comment', id = post.id, comment_id = comment.id)}}" >Delete</a>
-            </li>
-            <li>
-                <p class="name">Anton Lunyov</p>
-                <p class="date-post">1 day ago</p>
-                <p class="comment-text">Irure mollit est sit labore est deserunt pariatur duis aute laboris cupidatat. Consectetur consequat esse est sit veniam adipisicing ipsum enim irure. Irure mollit est sit labore est deserunt pariatur duis aute laboris cupidatat. Consectetur consequat esse.</p>
-                <a href = "{{url_for('delete_comment', id = post.id, comment_id = comment.id)}}" >Delete</a>
-            </li>
-        </ul>
+        <div class="wrap-comments">
+            <div class="content-wrap">
+                <h4 class="name-block">Comments</h4>
+                <a class="add-comment" href="#">
+                    <svg fill="#f6f6f6" height="80" viewBox="0 0 80 80" width="80" xmlns="http://www.w3.org/2000/svg"><path d="M61 37H43V19h-6v18H19v6h18v18h6V43h18"/></svg>
+                </a>
+                <form class="form-comment">
+                    <label class="name-field">
+                        Name
+                        <input type="text">
+                    </label>
+                    <label class="name-field">
+                        Comment
+                        <textarea cols="30" rows="5"></textarea>
+                    </label>
+                </form>
+                <ul class="list-comments">
+                    <li>
+                        <p class="name">Dmitry</p>
+                        <p class="date-post">1 day ago</p>
+                        <p class="comment-text">Irure mollit est sit labore est deserunt pariatur duis aute laboris cupidatat. Consectetur consequat esse est sit veniam adipisicing ipsum enim irure. Irure mollit est sit labore est deserunt pariatur duis aute laboris cupidatat. Consectetur consequat esse.</p>
+                        <a href = "{{url_for('delete_comment', id = post.id, comment_id = comment.id)}}" >Delete</a>
+                    </li>
+                    <li>
+                        <p class="name">Anton Lunyov</p>
+                        <p class="date-post">1 day ago</p>
+                        <p class="comment-text">Irure mollit est sit labore est deserunt pariatur duis aute laboris cupidatat. Consectetur consequat esse est sit veniam adipisicing ipsum enim irure. Irure mollit est sit labore est deserunt pariatur duis aute laboris cupidatat. Consectetur consequat esse.</p>
+                        <a href = "{{url_for('delete_comment', id = post.id, comment_id = comment.id)}}" >Delete</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
         <footer class="footer">
             <div class="content-wrap">
                 <p class="copy text-center vert-align">© 2016 Masters Academy</p>
