@@ -14,37 +14,30 @@
 	</header>
 	<div class="content">
 		<div class="icons">
-		<a href="">
+		<a href="/delete{{post.pid}}">
 			<svg class="icon-delete">
-					<symbol id="Delete" viewBox="0 0 80 80">	
+					<symbol id="Delete" viewBox="0 0 80 80">
 						<polyline points="56.971,52.728 44.243,40 56.971,27.272 52.728,23.029 40,35.757 27.272,23.029 23.029,27.272 35.757,40   23.029,52.728 27.272,56.971 40,44.243 52.728,56.971 " fill="#ffffff"/>
 					</symbol>
 		    		<use xlink:href="#Delete"/>
 				</svg>
 		</a>
-		<form action="">
+		<form action="/update" method="post">
 			<label>
 			<input type="submit" name="new-post">
 				<svg class="icon">
-					<symbol id="Layer_1" viewBox="0 0 32 32">	
+					<symbol id="Layer_1" viewBox="0 0 32 32">
 						<polyline points="22.186,10.52 14.054,18.652 9.814,14.411 8.4,15.825 14.054,21.48 23.6,11.934   " fill="#ffffff"/>
 					</symbol>
 		    		<use xlink:href="#Layer_1"/>
 				</svg>
-
-				<!--
-					Not working
-					<svg class="icon">
-						<use xlink:href="../static/img/1468689748_check-mark.svg#check"/>
-					</svg>
-				-->
 			</label>
 			</div>
 			<div class="create-content">
 				<p>Title</p>
-				<input type="text">
+				<input type="text" name="title" value="{{post.title}}">
 				<p>Description</p>
-				<textarea name="description" id="" cols="30" rows="10"></textarea>
+				<textarea name="description" id="" cols="30" rows="10">{{post.body}}</textarea>
 			</form>
 		</div>
 	</div>

@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect
-from db import db_all, db_new, db_post
+from db import db_all, db_new, db_post, db_delete
 
 app = Flask(__name__)
 
@@ -34,6 +34,18 @@ def get_post(id):
 def get_post_to_update(id):
     post = db_post(id)
     return render_template('update-post.html', post=post)
+
+
+@app.route('/update', methods=['POST'])
+def update_post():
+    return redirect('/')
+
+
+@app.route('/delete<id>')
+def delete(id):
+    # check auth
+    db_delete(id)
+    return redirect('/')
 
 
 if __name__ == '__main__':
