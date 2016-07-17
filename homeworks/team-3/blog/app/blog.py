@@ -1,52 +1,53 @@
 import os
 from flask import Flask, request, redirect, url_for
-from flask.ext.sqlalchemy import SQLAlchemy
 from flask import render_template
+from crud import post_all, post_look, post_new, post_update, post_delete
 
 blog = Flask(__name__)
 blog.config.from_object(os.environ['APP_SETTINGS'])
 blog.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(blog)
+from database import db_session
 
-@blog.route('/view', methods=['GET'])
-def view():
-    from post import Post
-    posts = Post.query.all()
+
+@blog.route('/', methods=['GET'])
+def index():
+    posts = post_all(db_session)
     return render_template('index.html', posts=posts)
 
+
+@blog.route('/<id>', methods=['GET'])
+def look(id):
+    post = post_look(db_session, id)
+    return render_template('post.html', post=post)
+
+
 @blog.route('/new', methods=['POST'])
-def post():
-    from post import Post
-    title = None
-    description = None
-    if request.method == 'POST':
-        title = request.form['title']
-        description = request.form['description']
-        post = Post(title, description)
-        db.session.add(post)
-        db.session.commit()
-    return redirect(url_for('/view'))
+def new():
+    title = request.args.get('title')
+    body = request.args.get('body')
+    post_new(db_session, title, body)
+    return redirect('/')
 
-@blog.route('/edit', methods=['POST']) #not work
-def edit():
-    from post import Post
-    id = None
-    post = None
-    if request.method == 'POST':
-        id = request.form['id']
-        post = Post.query.get(id)
-        post.title = request.form['title']
-        post.description = request.form['description']
-        db.session.commit()
-    return redirect(url_for('/post/view'))
 
-@blog.route('/post/delete', methods=['DELETE', 'POST'])# not work
-def delete():
-    from post import Post
-    id_post = None
-    post = None
-    if request.method == 'DELETE' or request.method == 'POST':
-        id_post = request.form['id']
-        Post.query.filter_by(id=id_post).delete()
-        db.session.commit()
-    return redirect(url_for('/post/view'))
+@blog.route('/update', methods=['POST'])
+def update():
+    id = request.args.get('id')
+    title = request.args.get('title')
+    body = request.args.get('body')
+    post_update(db_session, id, title, body)
+    return redirect('/')
+
+
+@blog.route('/delete/<id>', methods=['GET'])
+def delete(id):
+    post_delete(db_session, id)
+    return redirect('/')
+
+
+@blog.teardown_appcontext
+def shutdown_session(exception=None):
+    db_session.remove()
+
+
+if __name__ == '__main__':
+    blog.run()
