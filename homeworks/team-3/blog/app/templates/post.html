@@ -13,8 +13,8 @@
         </svg>
     </div>
     <div class="header-middle">
-        <div class="title">On the road again and now there is too long title</div>
-        <div class="date">2 days ago</div>
+        <div class="title">{{post.title}}</div>
+        <div class="date"> {{post.created_at}} </div>
     </div>
     <div class="wrapper wrapper-right">
         <svg viewBox="0 0 22 22">
@@ -26,14 +26,7 @@
 
 <div class="row">
     <div class="col-12">
-        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce malesuada vehicula finibus. Nullam fermentum
-            nisi metus, eu placerat arcu commodo at. Nunc eleifend lacus vitae euismod faucibus. Fusce molestie enim
-            tortor, eu scelerisque mi euismod ut. Ut hendrerit varius arcu sit amet feugiat. Nullam efficitur sed nibh
-            at volutpat. Morbi luctus odio et eros sagittis, ac dapibus sapien placerat. Phasellus laoreet felis sit
-            amet enim lacinia, sit amet scelerisque tortor blandit. Nulla at nibh vitae libero elementum interdum ut et
-            dui. Suspendisse non est placerat, fringilla quam in, ultricies massa. Integer convallis purus vitae sapien
-            vestibulum, ac imperdiet tortor tempus. Ut dapibus suscipit magna.
-        </div>
+        <div>{{post.body}}</div>
     </div>
 </div>
 
