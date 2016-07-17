@@ -1,16 +1,25 @@
-from blog import db
+from sqlalchemy.orm import relationship
+from sqlalchemy import Column, Integer, String, Text, DateTime
+from datetime import datetime
+from comment import Comment
+from database import Base
 
 
-class Post(db.Model):
+class Post(Base):
     __tablename__ = 'posts'
 
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String())
-    description = db.Column(db.Text)
+    id = Column(Integer, primary_key=True)
+    title = Column(String)
+    body = Column(Text)
+    created_at = Column(DateTime)
+    updated_at = Column(DateTime)
 
-    def __init__(self, title, description):
+    comments = relationship(Comment, backref='post')
+
+    def __init__(self, title, body):
         self.title = title
-        self.description = description
+        self.body = body
+        self.created_at = datetime.now().strftime("%Y.%m.%d %H:%M:$S")
 
         def __repr__(self):
             return '<Post %r>' % self.title
