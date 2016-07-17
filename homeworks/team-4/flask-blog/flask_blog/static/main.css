@@ -232,7 +232,7 @@ a {
         line-height: inherit; } }
   .wrap-comments .comment-text {
     font: 300 15px/18px Roboto;
-    padding: 10px; }
+    padding: 10px 0; }
     @media (min-width: 768px) {
       .wrap-comments .comment-text {
         font-size: 21px;
