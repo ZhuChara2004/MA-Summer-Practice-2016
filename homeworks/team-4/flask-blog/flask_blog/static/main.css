@@ -232,15 +232,14 @@ a {
         line-height: inherit; } }
   .wrap-comments .comment-text {
     font: 300 15px/18px Roboto;
-    padding-top: 10px; }
+    padding: 10px; }
     @media (min-width: 768px) {
       .wrap-comments .comment-text {
         font-size: 21px;
         line-height: 25px; } }
   .wrap-comments .delete-btn {
     font: 400 22px/27px Roboto;
-    color: #999;
-    margin-top: 10px; }
+    color: #999; }
     @media (min-width: 768px) {
       .wrap-comments .delete-btn {
         font-size: 28px; } }
