@@ -111,8 +111,9 @@ a {
       bottom: -35px;
       background: #ff5252;
       border: none !important; }
-      .header .content-wrap .btn-header:focus {
-        outline: none; }
+      .header .content-wrap .btn-header:focus, .header .content-wrap .btn-header:hover {
+        outline: none;
+        cursor: pointer; }
       @media (min-width: 768px) {
         .header .content-wrap .btn-header {
           right: 70px;
