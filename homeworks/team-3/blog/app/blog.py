@@ -21,10 +21,15 @@ def look(id):
     return render_template('post.html', post=post)
 
 
-@blog.route('/new', methods=['POST'])
-def new():
-    title = request.args.get('title')
-    body = request.args.get('body')
+@blog.route('/new')
+def page_for_new_post():
+    return render_template('new-post.html')
+
+
+@blog.route('/add', methods=['POST'])
+def add():
+    title = request.form['title']
+    body = request.form['body']
     post_new(db_session, title, body)
     return redirect('/')
 
