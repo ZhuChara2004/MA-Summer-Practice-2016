@@ -1,0 +1,68 @@
+.header
+  background: #3f51b5
+  .content-wrap
+    position: relative
+    text-align: center
+    min-height: 150px
+    padding: 35px 15px
+    @media (min-width: 768px)
+      text-align: left
+      padding-left: 120px
+      min-height: 250px
+    .title-page
+      font: 700 60px Roboto
+      color: #f6f6f6
+      @media (min-width: 768px)
+        font-size: 94px
+    .title-article-page
+      font: 700 30px/40px Roboto
+      color: #f6f6f6
+      @media (min-width: 600px)
+        font-size: 42px
+        line-height: 50px
+        padding-right: 0
+      @media (min-width: 768px)
+        font-size: 64px
+        line-height: 75px
+        padding-right: 70px
+    .date-post
+      color: #eee
+      @media (min-width: 768px)
+        padding: 0
+    .btn-header, .btn-back
+      display: block
+      width: 70px
+      height: 70px
+      border-radius: 50%
+      @media (min-width: 768px)
+        width: 114px
+        height: 114px
+    .btn-back
+      position: relative
+      margin: 0 10px 0 -10px
+      @media (min-width: 768px)
+        margin: 56px 30px 56px -75px
+    .btn-header
+      position: absolute
+      right: 30px
+      bottom: -35px
+      background: #ff5252
+      border: none !important
+      &:focus
+        outline: none
+      @media (min-width: 768px)
+        right: 70px
+        bottom: -52px
+    .btn-edit
+      right: 110px
+      @media (min-width: 768px)
+        right: 200px
+    svg
+      position: absolute
+      top: 0
+      left: 0
+      right: 0
+      bottom: 0
+      margin: auto
+.header.new-article
+  background: #4caf50
