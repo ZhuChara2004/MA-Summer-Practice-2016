@@ -48,6 +48,5 @@ def db_update(pid, title, body):
     update_post = db.query(post).filter(post.pid == pid).first()
     update_post.title = title
     update_post.body = body
-    db.updete(update_post)
-    # db.delete(update_post)
+    db.add(update_post)
     db.commit

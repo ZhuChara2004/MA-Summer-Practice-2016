@@ -1,11 +1,14 @@
 from flask import Flask, render_template, request, redirect
-from db import db_all, db_new, db_post, db_delete
+from db import db_all, db_new, db_post, db_delete, db_update
+from user_db import user_create
+import uuid
 
 app = Flask(__name__)
 
 
 @app.route('/', methods=['GET'])
 def index():
+    # print(uuid.uuid4())
     list_posts = list(reversed(db_all()))
     return render_template('index.html', posts=list_posts)
 
@@ -36,8 +39,13 @@ def get_post_to_update(id):
     return render_template('update-post.html', post=post)
 
 
-@app.route('/update', methods=['POST'])
-def update_post():
+@app.route('/update<id>', methods=['POST'])
+def update_post(id):
+    title = request.form['title']
+    body = request.form['description']
+    print(title)
+    print(body)
+    db_update(id, title, body)
     return redirect('/')
 
 
@@ -46,6 +54,27 @@ def delete(id):
     # check auth
     db_delete(id)
     return redirect('/')
+
+
+@app.route('/auth', methods=['GET', 'POST'])
+def auth():
+    if request.method == 'GET':
+        return render_template('sign-up.html')
+    elif request.method == 'POST':
+        login = request.form['login']
+        password = request.form['password']
+        password_r = request.form['password_repeat']
+        mail = request.form['mail']
+        if password == password_r:
+            user_create(login, password, mail)
+            return redirect('/signIn')
+        elif password != password_r:
+            redirect('/auth')
+
+
+@app.route('/signIn')
+def sign_in():
+    return render_template('sign-in.html')
 
 
 if __name__ == '__main__':
