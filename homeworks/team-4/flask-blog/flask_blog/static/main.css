@@ -116,19 +116,16 @@ a {
       @media (min-width: 768px) {
         .header .content-wrap .btn-header {
           right: 70px;
-          bottom: -52px; } }
+          bottom: -57px; } }
     .header .content-wrap .btn-edit {
       right: 110px; }
       @media (min-width: 768px) {
         .header .content-wrap .btn-edit {
           right: 200px; } }
     .header .content-wrap svg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      margin: auto; }
+      width: 100%;
+      height: 100%;
+      padding: 5px; }
 
 .header.new-article {
   background: #4caf50; }
@@ -179,12 +176,8 @@ a {
       cursor: pointer;
       outline: none; }
     .wrap-comments .add-comment svg {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      margin: auto; }
+      width: 100%;
+      height: 100%; }
   .wrap-comments .form-comment {
     position: relative;
     padding: 20px 0; }
