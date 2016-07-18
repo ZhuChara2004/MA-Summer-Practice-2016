@@ -2,8 +2,8 @@ from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
+from helpers import create_cookie
 import uuid
-import cookies
 
 Base = declarative_base()
 
@@ -32,14 +32,11 @@ def user_create(login, password, mail):
         db.commit()
 
 
-def auth(login, mail, password):
-    if '@' in mail:
-        s_user = db.query(user).filter(user.mail == mail, user.password == password).first()
+def sign_in_user(login, password):
+    if '@' in login:
+        s_user = db.query(user).filter(user.mail == login, user.password == password).first()
         create_cookie()
     elif '@' not in login:
-        s_user = db.query(user).filter(user.login == mail, user.password == password).first()
+        s_user = db.query(user).filter(user.login == login, user.password == password).first()
         create_cookie()
-
-
-def create_cookie():
-    c = 'blabla'
+    return s_user

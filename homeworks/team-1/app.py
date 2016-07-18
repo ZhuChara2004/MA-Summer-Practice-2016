@@ -1,14 +1,12 @@
 from flask import Flask, render_template, request, redirect
 from db import db_all, db_new, db_post, db_delete, db_update
-from user_db import user_create
-import uuid
+from user_db import user_create, sign_in_user
 
 app = Flask(__name__)
 
 
 @app.route('/', methods=['GET'])
 def index():
-    # print(uuid.uuid4())
     list_posts = list(reversed(db_all()))
     return render_template('index.html', posts=list_posts)
 
@@ -72,9 +70,19 @@ def auth():
             redirect('/auth')
 
 
-@app.route('/signIn')
+@app.route('/signIn', methods=['GET', 'POST'])
 def sign_in():
-    return render_template('sign-in.html')
+    if request.method == 'GET':
+        return render_template('sign-in.html')
+    elif request.method == 'POST':
+        login = request.form['login']
+        password = request.form['password']
+        request_user = sign_in_user(login, password)
+        if not request_user:
+            return render_template('/signIn')
+        else:
+            print(request_user.login)
+            return redirect('/')
 
 
 if __name__ == '__main__':
