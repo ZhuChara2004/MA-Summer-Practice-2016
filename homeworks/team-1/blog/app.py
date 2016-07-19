@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request, redirect
 from db import db_all, db_new, db_post, db_delete, db_update
-from user_db import user_create, sign_in_user
+from flask import Flask, render_template, request, redirect
+
+from blog.user_db import user_create, sign_in_user
 
 app = Flask(__name__)
 
