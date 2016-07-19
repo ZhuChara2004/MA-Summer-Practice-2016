@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/index.css') }}">
+</head>
+<body>
+
+<div class="header post-header">
+    <div class="wrapper wrapper-left">
+        <svg viewBox="0 0 22 22">
+            <path fill="white" d="M21,11H6.83L10.41,7.41L9,6L3,12L9,18L10.41,16.58L6.83,13H21V11Z"/>
+        </svg>
+    </div>
+    <div class="header-middle">
+        <div class="title">{{post.title}}</div>
+        <div class="date"> {{post.created_at}} </div>
+    </div>
+    <div class="wrapper wrapper-right">
+        <svg viewBox="0 0 22 22">
+            <path fill="red"
+                  d="M17,13H13V17H11V13H7V11H11V7H13V11H17M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"/>
+        </svg>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div>{{post.body}}</div>
+    </div>
+</div>
+
+</body>
+</html>
+

@@ -1,0 +1,36 @@
+.header {
+  justify-content: center;
+  margin-bottom: 50px; }
+
+.post-header {
+  background-color: #3F51B5; }
+
+.wrapper {
+  width: 5em; }
+
+.wrapper-left {
+  align-self: flex-start; }
+.wrapper-left svg {
+  transform: translate(0px, 0px); }
+
+.header-middle {
+  flex-direction: column;
+  display: flex; }
+
+.title {
+  font-size: xx-large;
+  font-weight: bold; }
+
+.wrapper-right-add {
+  align-self: flex-end; }
+.wrapper-right-add svg {
+  transform: translate(-4px, -4px); }
+
+.circle {
+  position: relative;
+  bottom: -48px;
+  background-color: red;
+  border-radius: 50%;
+  width: 75px;
+  height: 75px; }
+

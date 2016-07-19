@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/index.css') }}">
+</head>
+<body>
+
+<div class="header post-header">
+    <div class="header-wrapper">
+        <div class="wrapper wrapper-left">
+        </div>
+        <div class="header-middle">
+            <div class="title">BLOG</div>
+        </div>
+        <div class="wrapper wrapper-right-add">
+            <div class="circle" onclick=" window.location.pathname='/new';">
+                <svg version="1" xmlns="http://www.w3.org/2000/svg" width="85.333" height="85.333" viewBox="0 0 64.000000 64.000000">
+                    <path d="M30 20v10H20c-9.3 0-10 .1-10 2s.7 2 10 2h10v10c0 9.3.1 10 2 10s2-.7 2-10V34h10c9.3 0 10-.1 10-2s-.7-2-10-2H34V20c0-9.3-.1-10-2-10s-2 .7-2 10z" fill="white"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% for post in posts %}
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+        <h1><a href="{{url_for('look', id=post.id)}}">{{post.title}}</a></h1>
+        <div class="date">{{post.created_at}}</div>
+        <p>{{post.body}} </p>
+    </div>
+    <div class="col-3"></div>
+</div>
+{% endfor %}
+
+</div>
+</body>
+</html>
+
