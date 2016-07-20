@@ -6,11 +6,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>NewPost</title>
         <link href="{{ url_for('static', filename='main.min.css') }}" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
     </head>
     <body>
         <header class="header new-article">
             <div class="content-wrap">
                 <h2 class="title-page vert-align">New Post</h2>
+                <svg style="display: none">
+                    <symbol id="done-btn" viewBox="0 0 80 80">
+                        <path fill="#fff" d="M40 22H15.66l11.17-11.17L24 8 8 24l16 16 2.83-2.83L15.66 26H40v-4z"/>
+                    </symbol>
+                </svg>
                 <button class="btn-header" input type=submit form="add_form">
                     <svg fill="#f6f6f6" height="48" viewBox="0 0 48 48" width="48" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h48v48H0z" fill="none"/><path d="M18 32.34L9.66 24l-2.83 2.83L18 38l24-24-2.83-2.83z"/></svg>
                 </button>

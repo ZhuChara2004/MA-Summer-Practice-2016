@@ -6,13 +6,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Blog</title>
         <link href="{{ url_for('static', filename='main.min.css') }}" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
     </head>
     <body>
         <header class="header">
             <div class="content-wrap">
                 <h1 class="title-page vert-align">Blog</h1>
+                <svg style="display: none">
+                    <symbol id="plus-btn" viewBox="0 0 80 80">
+                        <path fill="#fff" d="M61 37H43V19h-6v18H19v6h18v18h6V43h18"/>
+                    </symbol>
+                </svg>
                 <a class="btn-header" href="{{ url_for('postPage') }}">
-                    <svg fill="#f6f6f6" height="70" viewBox="0 0 80 80" width="70" xmlns="http://www.w3.org/2000/svg"><path d="M61 37H43V19h-6v18H19v6h18v18h6V43h18"/></svg>
+                    <svg>
+                        <use xlink:href="#plus-btn"/>
+                    </svg>
                 </a>
             </div>
         </header>
