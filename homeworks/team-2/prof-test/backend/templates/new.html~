@@ -5,7 +5,6 @@
 <body>
 	<form action="/save" method="post">
 		<input type="text" name="question"></input>
-		<input type="text" name="question"></input>
 		<input type="text" name="type"></input>
 		<input type="submit">add</input>
 	</form>

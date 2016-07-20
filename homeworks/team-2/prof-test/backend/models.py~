@@ -21,6 +21,7 @@ class Question(Base):
 
     id = Column(Integer, primary_key=True)
     question = Column(String(256))
+    type = Column(Integer)
     answers = relationship('Answer', backref='question',
                                 lazy='dynamic')
     test_id = Column(Integer, ForeignKey('test.id'))
