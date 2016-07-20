@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+    <head>
+        <title>Prof-Test</title>
+    </head>
+    <body>
+        {% for test in tests %}
+        	<h3>Test <b>{{ test['name'] }}</b>({{ test['id'] }}):</h3>
+		{% for question in tests.questions %}
+			<h4>Question <b>{{ question['question'] }}</b>({{ question['id'] }})</h4>
+			{% for answer in question.answers %}
+				<h5>{{ answer['id'] }}: {{ answer['answer'] }}</h5>
+			{5 endfor %}
+		{% endfor %}
+        {% endfor %}
+    <body>
+</html>
