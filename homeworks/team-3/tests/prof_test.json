@@ -1,0 +1,37 @@
+{
+  "Persons": [
+    {
+      "id_person": "1",
+      "Advice": "Some advice",
+      "Name": "Bill"
+    }
+  ],
+  "Professions": [
+    {
+      "id_prof": "1",
+      "Title": "Programmer",
+      "SubProffesion": [
+        {
+          "id_sub_proffesion": "1",
+          "Title": "SysProgrammer"
+        }
+      ]
+    }
+  ],
+  "Results":[ {
+    "id_person": 1,
+    "Email": "example@.com"
+  }],
+  "Tests": [
+    {
+      "Title": "Some question?",
+      "Answers": [
+        {
+          "id_sub_profession": "1",
+          "Body": "Text of answer",
+          "Mask": "1"
+        }
+      ]
+    }
+  ]
+}
