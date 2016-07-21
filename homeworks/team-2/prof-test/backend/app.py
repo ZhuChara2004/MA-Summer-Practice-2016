@@ -3,6 +3,9 @@ from flask import Flask
 from flask import render_template, request, redirect
 from models import db_q, db_save, db_delete
 import config
+import sys
+sys.path.append("./models")
+from base import db
 
 app = Flask(__name__)
 app.config.from_object(config.DevelopmentConfig)

@@ -4,27 +4,25 @@
 </head>
 <body>
 	<form action="/save" method="post">
-		<input type="text" name="question"></input>
-		<input type="text" name="question"></input>
-		<input type="text" name="type"></input>
-		<input type="submit">add</input>
+		Name of test: <input type="text" name="test"><br>
+		* Questions:<br>
+		<span name='question_inner' id='question_inner'>
+			<input type="text" name="question_0"><br>
+		</span>
+		<input type='button' value='Add' onclick="ff()"><br>
+		<input type="text" name="type"><br>
 	</form>
 <body>
+
+<script language='JavaScript' type="text/javascript">
+var i = 1;
+function ff(){
+  document.getElementById('question_inner').innerHTML = document.getElementById('question_inner').innerHTML +
+"<input type='text' name='question_" + i + "' /><br>";
+ 
+i++;
+}
+</script>
+
 </html>
 
-<!DOCTYPE html>
-    <head>
-        <title>Prof-Test</title>
-    </head>
-    <body>
-        {% for test in tests %}
-        	<h3>Test <b>{{ test['name'] }}</b>({{ test['id'] }}):</h3>
-		{% for question in tests.questions %}
-			<h4>Question <b>{{ question['question'] }}</b>({{ question['id'] }})</h4>
-			{% for answer in question.answers %}
-				<h5>{{ answer['id'] }}: {{ answer['answer'] }}</h5>
-			{% endfor %}
-		{% endfor %}
-        {% endfor %}
-    <body>
-</html>
