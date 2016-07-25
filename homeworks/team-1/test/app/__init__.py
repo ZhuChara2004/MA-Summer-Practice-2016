@@ -7,4 +7,4 @@ app.config.from_object('config')
 db = SQLAlchemy(app)
 db.create_all()
 
-from test_prof.app import views
+from test.app import views
