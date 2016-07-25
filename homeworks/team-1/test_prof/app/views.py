@@ -1,5 +1,5 @@
-from test.app.__init__ import app
-from test.app.models import create_direction, get_f
+from test_prof.app.__init__ import app
+from test_prof.app.models import create_direction, get_f
 
 
 @app.route('/')

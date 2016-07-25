@@ -1,7 +1,7 @@
 from migrate.versioning import api
-from test.config import SQLALCHEMY_DATABASE_URI
-from test.config import SQLALCHEMY_MIGRATE_REPO
-from test.app import db
+from test_prof.config import SQLALCHEMY_DATABASE_URI
+from test_prof.config import SQLALCHEMY_MIGRATE_REPO
+from test_prof.app import db
 import os.path
 db.create_all()
 if not os.path.exists(SQLALCHEMY_MIGRATE_REPO):
