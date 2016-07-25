@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Masters Coding Camp</title>
+	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+	<script type="text/javascript" src="../static/js/fonts.js"></script>
+	<link rel="stylesheet" href="../static/css/main.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<header class="view-header">
+		<div class="head-wrapper">
+			<ul class="singin">
+				<li><a href="/signIn">Sing In</a></li>
+				<li><a href="/auth">Sing Up</a></li>
+				<li>kjlk;l;</li>
+			</ul>
+			<h1>Blog</h1>
+		</div>
+	</header>
+	<div class="content">
+		<a href="/create">
+			<svg class="icon">
+				<symbol id="Layer_1" viewBox="-20 -20 120 120">	
+					<polyline points="61,37 43,37 43,19 37,19 37,37 19,37 19,43 37,43 37,61 43,61 43,43 61,43 " fill="#ffffff"/>
+				</symbol>
+	    		<use xlink:href="#Layer_1"/>
+			</svg>
+		</a>
+
+		<div class="post-content">
+			{% for post in posts %}
+			<div class="news">
+				<a href="/post{{post.pid}}">{{post.title}}</a>
+				<p class="date">{{post.daytime}}</p>
+				<p class="news-text">{{post.body}}</p>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+	<footer>© 2016 Masters Academy</footer>
+</body>
+</html>
