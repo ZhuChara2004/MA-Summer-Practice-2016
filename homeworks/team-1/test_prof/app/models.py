@@ -30,9 +30,6 @@ class Directions(db.Model):
         self.name_direction = name
 
 
-db.create_all()
-
-
 def create_direction(name):
     direction = Directions('Yurik')
     db.session.add(direction)
