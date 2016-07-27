@@ -1,7 +1,7 @@
 {
-  "name": "blog",
+  "name": "test",
   "version": "1.0.0",
-  "description": "blog for masters academy",
+  "description": "professional test",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,8 +9,6 @@
   "author": "Team 1",
   "license": "ISC",
   "devDependencies": {
-    "del": "^2.2.1",
-    "fontfaceobserver": "^2.0.1",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-cssnano": "^2.1.2",
