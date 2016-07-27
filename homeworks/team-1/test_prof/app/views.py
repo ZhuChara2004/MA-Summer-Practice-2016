@@ -1,5 +1,6 @@
 from test_prof.app.__init__ import app
-from test_prof.app.models import create_direction, get_direction
+from flask import render_template
+from test_prof.app.models import create_direction, get_test
 
 
 @app.route('/')
@@ -9,6 +10,11 @@ def index():
     return "Hello, World!"
 
 
-@app.route('/<id>', methods=['GET'])
-def get_first(id):
-    return get_direction(id)
+@app.route('/prof', methods=['GET'])
+def get_first():
+    for a in get_test(1).questions:
+        print(a.question)
+        for b in a.answers:
+            print(b.answer)
+    return render_template('index.html')
+
