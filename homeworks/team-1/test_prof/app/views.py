@@ -1,5 +1,5 @@
 from test_prof.app.__init__ import app
-from test_prof.app.models import create_direction, get_f
+from test_prof.app.models import create_direction, get_direction
 
 
 @app.route('/')
@@ -11,4 +11,4 @@ def index():
 
 @app.route('/<id>', methods=['GET'])
 def get_first(id):
-    return get_f(id)
+    return get_direction(id)
