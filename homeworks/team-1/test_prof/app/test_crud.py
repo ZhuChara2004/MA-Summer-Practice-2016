@@ -1,0 +1,21 @@
+from .models import Questions, Answers, Directions, Test, db
+
+
+def create_test(name):
+    test = Test(name)
+    db.session.add(test)
+    db.session.commit()
+
+
+def create_question(question, direction_id, test_id, answers):
+    question = Questions(question, direction_id, test_id)
+    db.session.add(question)
+    db.session.commit()
+    for answer in answers:
+        create_answers(answer)
+
+
+def create_answers(answer):
+    answer = Answers(answer.answer, answer.question_id, answer.direction_id)
+    db.session.add(answer)
+    db.session.commit()
