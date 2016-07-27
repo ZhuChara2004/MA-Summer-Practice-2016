@@ -39,14 +39,16 @@ def create_direction(name):
     db.session.commit()
 
 
-def get_direction(id):
-    direction = Directions.query.filter_by(id=id).first()
-    return direction.name_direction
+def get_question(id):
+    question = Questions.query.filter_by(id=id).first()
+    return question
 
 
-def get_test(id):
+def get_questions(id):
     test = Test.query.filter_by(id=id).first()
+    print(test.name_test)
     return test
+
 
 
 
