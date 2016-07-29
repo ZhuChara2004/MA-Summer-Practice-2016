@@ -7,11 +7,11 @@ from test_prof.app.service import question_to_json, questions_to_json
 class Question(Resource):
     def get(self, id):
         print(jsonify(question_to_json(get_question(id))))
-        return jsonify({'question': question_to_json(get_question(id))})
+        return {'question': question_to_json(get_question(id))}
 
 
 class Questions(Resource):
     def get(self, test_id):
-        return jsonify(questions_to_json(get_questions(test_id)))
+        return questions_to_json(get_questions(test_id))
 
 
