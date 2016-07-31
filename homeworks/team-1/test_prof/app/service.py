@@ -39,7 +39,7 @@ def direction_to_json(direction):
     return {'name': direction.name_direction}
 
 
-def test_ids(test):
+def questions_id_list(test):
     list_ids = []
     for q in test.questions:
         list_ids.append({

@@ -1,7 +1,7 @@
 from flask_restful import Resource
-from test_prof.app.service import question_to_json, questions_to_json, direction_to_json, test_ids
+from test_prof.app.service import question_to_json, questions_to_json, direction_to_json, questions_id_list
 from test_prof.app.test_crud import (create_test, create_direction, create_answers, create_question,
-                                     get_question, get_questions, get_test, get_direction)
+                                     get_question, get_test, get_direction)
 
 
 class Question(Resource):
@@ -11,7 +11,7 @@ class Question(Resource):
 
 class Questions(Resource):
     def get(self, test_id):
-        return questions_to_json(get_questions(test_id))
+        return questions_to_json(get_test(test_id))
 
 
 class Direction(Resource):
@@ -21,4 +21,4 @@ class Direction(Resource):
 
 class QuestionsIds(Resource):
     def get(self, test_id):
-        return test_ids(get_questions(test_id))
+        return questions_id_list(get_test(test_id))

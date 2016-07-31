@@ -32,11 +32,6 @@ def get_question(id):
     return question
 
 
-def get_questions(id):
-    test = Test.query.filter_by(id=id).first()
-    return test
-
-
 def get_direction(id):
     direction = Directions.query.filter_by(id=id).first()
     return direction
