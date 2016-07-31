@@ -19,3 +19,32 @@ def create_answers(answer):
     answer = Answers(answer.answer, answer.question_id, answer.direction_id)
     db.session.add(answer)
     db.session.commit()
+
+
+def create_direction(name):
+    direction = Directions('Yurik')
+    db.session.add(direction)
+    db.session.commit()
+
+
+def get_question(id):
+    question = Questions.query.filter_by(id=id).first()
+    return question
+
+
+def get_questions(id):
+    test = Test.query.filter_by(id=id).first()
+    return test
+
+
+def get_direction(id):
+    direction = Directions.query.filter_by(id=id).first()
+    return direction
+
+
+def get_test(id):
+    test = Test.query.filter_by(id=id).first()
+    return test
+
+
+

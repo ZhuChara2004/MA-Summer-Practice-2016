@@ -14,7 +14,6 @@ def answers_to_json(question):
 
 
 def question_to_json(question):
-    print(question.question)
     return {
         'id': question.id,
         'body': question.question,
@@ -34,3 +33,17 @@ def questions_to_json(test):
         'test': test.name_test,
         'questions': list_questions
     }
+
+
+def direction_to_json(direction):
+    return {'name': direction.name_direction}
+
+
+def test_ids(test):
+    list_ids = []
+    for q in test.questions:
+        list_ids.append({
+            'question_id': q.id,
+            'direction_id': q.direction_id
+        })
+    return {'list_ids': list_ids}

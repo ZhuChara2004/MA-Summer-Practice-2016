@@ -8,6 +8,4 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 app.config['SECRET_KEY'] = 'secret_key_'
 db = SQLAlchemy(app)
 
-
-
 from test_prof.app import views
