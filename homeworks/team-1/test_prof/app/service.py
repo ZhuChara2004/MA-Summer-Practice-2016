@@ -36,7 +36,7 @@ def questions_to_json(test):
 
 
 def direction_to_json(direction):
-    return {'name': direction.name_direction}
+    return {'direction': direction.name_direction}
 
 
 def questions_id_list(test):
@@ -47,3 +47,20 @@ def questions_id_list(test):
             'direction_id': q.direction_id
         })
     return {'list_ids': list_ids}
+
+
+def control_question_to_json(question, args):
+    args = args.split('/')
+    list_answers = []
+    for a in question.answers:
+        for item in args:
+            if a.id is int(item):
+                list_answers.append({
+                    'answer': a.answer,
+                    'direction_id': a.direction_id
+                })
+    return {
+        'question': question.question,
+        'id': question.id,
+        'answers': list_answers
+    }
