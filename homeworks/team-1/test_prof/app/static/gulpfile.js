@@ -10,19 +10,19 @@ gulp.task('css', function() {
 		autoprefixer({browsers: ['last 15 versions', '> 1%', 'ie 8', 'ie 7']}),
 	];
 
-	return gulp.src('static/sass/**/*.sass')
+	return gulp.src('sass/**/*.sass')
 		.pipe(sass())		
 		.pipe(postcss(processors))
-		.pipe(gulp.dest('static/css'));
+		.pipe(gulp.dest('css'));
 });
 
 gulp.task('min', ['css'], function() {
-	return gulp.src('static/css/main.css')
+	return gulp.src('css/main.css')
 	.pipe(cssnano())
 	.pipe(rename({suffix: '.min'}))
-	.pipe(gulp.dest('static/css'))
+	.pipe(gulp.dest('css'))
 })
 
 gulp.task('watch', ['min'], function() {
-	gulp.watch('static/sass/**/*.sass', ['css', 'min']);
+	gulp.watch('sass/**/*.sass', ['css', 'min']);
 });

@@ -5,11 +5,11 @@
 body {
   background: #fff; }
 
-.answer {
+.content {
   width: 800px;
   margin: 100px auto;
   text-align: center; }
-  .answer .head-text {
+  .content .head-text {
     font-size: 45px; }
 
 form {

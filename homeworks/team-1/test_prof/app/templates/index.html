@@ -5,18 +5,17 @@
 	<title>Test</title>
 	<link rel="stylesheet" href="../static/css/main.min.css">
 </head>
-<body>
-	
-		<div class="answer">
-			<h1 class="head-text">Як Вам найкраще сприймати інформацію?</h1>
-			<form action="">
-				<p><label><input type="radio" name="answer" value="a1">з розповідей, на слух</label></p>
-				<p><label><input type="radio" name="answer" value="a2">візуально (люблю ілюстрації)</label></p>
-				<p><label><input type="radio" name="answer" value="a3">через дії, практично</label></p>
-				<p><label><input type="radio" name="answer" value="a4">з Інтернету, книг, довідників</label></p>
-				<input type="submit" value="Наступне запитання" class="button">
-			</form>
-		</div>
-	
+<body>	
+	<div class="content">
+		<h1 class="head-text">Як Вам найкраще сприймати інформацію?</h1>
+		<form action="">
+			<p><label><input type="radio" name="answer" value="a1">з розповідей, на слух</label></p>
+			<p><label><input type="radio" name="answer" value="a2">візуально (люблю ілюстрації)</label></p>
+			<p><label><input type="radio" name="answer" value="a3">через дії, практично</label></p>
+			<p><label><input type="radio" name="answer" value="a4">з Інтернету, книг, довідників</label></p>
+			<input onclick="loadTests()" type="submit" value="Наступне запитання" class="button">
+		</form>
+	</div>
+	<script src="../static/js/main.js"></script>	
 </body>
 </html>
