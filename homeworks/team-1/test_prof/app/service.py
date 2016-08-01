@@ -26,9 +26,7 @@ def question_to_json(question):
 def questions_to_json(test):
     list_questions = []
     for q in test.questions:
-        list_questions.append({
-            'question': question_to_json(q)
-        })
+        list_questions.append(question_to_json(q))
     return {
         'test': test.name_test,
         'questions': list_questions
@@ -50,6 +48,8 @@ def questions_id_list(test):
 
 
 def control_question_to_json(question, args):
+    if question.direction_id == 0:
+        return {'error': 'question is not control'}
     args = args.split('/')
     list_answers = []
     for a in question.answers:
@@ -60,7 +60,7 @@ def control_question_to_json(question, args):
                     'direction_id': a.direction_id
                 })
     return {
-        'question': question.question,
+        'body': question.question,
         'id': question.id,
         'answers': list_answers
     }
