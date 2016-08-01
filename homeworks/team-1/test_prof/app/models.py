@@ -41,30 +41,3 @@ class Directions(db.Model):
 
     def __init__(self, name):
         self.name_direction = name
-
-
-def create_direction(name):
-    direction = Directions('Yurik')
-    db.session.add(direction)
-    db.session.commit()
-
-
-def get_question(id):
-    question = Questions.query.filter_by(id=id).first()
-    return question
-
-
-def get_questions(id):
-    test = Test.query.filter_by(id=id).first()
-    print(test.name_test)
-    return test
-
-
-
-
-
-
-
-
-
-
