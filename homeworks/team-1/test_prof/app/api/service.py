@@ -42,13 +42,19 @@ def direction_to_json(direction):
     return {'direction': direction.name_direction}
 
 
-def questions_id_list(test):
+def questions_id_list(test, direction):
     list_ids = []
     for q in test.questions:
-        list_ids.append({
-            'question_id': q.id,
-            'direction_id': q.direction_id
-        })
+        if direction == "all":
+            list_ids.append({
+                'question_id': q.id,
+                'direction_id': q.direction_id
+            })
+        elif int(direction) == q.direction_id:
+            list_ids.append({
+                'question_id': q.id,
+                'direction_id': q.direction_id
+            })
     return {'list_ids': list_ids}
 
 

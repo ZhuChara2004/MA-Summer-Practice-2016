@@ -1,4 +1,4 @@
-from test_prof.app.__init__ import db
+from test_prof.app.api.__init__ import db
 
 
 class Test(db.Model):
