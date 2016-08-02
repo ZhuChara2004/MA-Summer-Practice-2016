@@ -1,3 +1,8 @@
+import json
+from .test_crud import create_test, create_direction
+from .admin import equals
+
+
 def answer_to_json(answer):
     return {
         'id': answer.id,
@@ -64,3 +69,22 @@ def control_question_to_json(question, args):
         'id': question.id,
         'answers': list_answers
     }
+
+
+def create(j):
+    print(j)
+    obj = json.loads(j)
+    if equals(obj["token"]):
+        method_name = obj["method"]
+        print(method_name)
+        if method_name == "c_test":
+            create_test(obj['body'][0]['name'])
+            return {"response": "ok"}
+        elif method_name == "c_question":
+            # add create question
+            return {"response": "ok"}
+        elif method_name == "c_direction":
+            create_direction(obj['body'][0]['name'])
+            return {"response": "ok"}
+
+# http://127.0.0.1:5000/api/v1.0/create/{"method" : "c_test", "body" :[ {"name" : "CDTU_test"}], "token":"secret_token"}
