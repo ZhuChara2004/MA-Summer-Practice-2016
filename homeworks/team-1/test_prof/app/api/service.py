@@ -1,6 +1,6 @@
 import json
 from .test_crud import create_test, create_direction, delete_question, delete_direction, create_question
-from test_prof.app.api.test_crud import (get_question, get_test, get_direction, get_tests)
+from test_prof.app.api.test_crud import (get_tests)
 from .admin import equals
 
 

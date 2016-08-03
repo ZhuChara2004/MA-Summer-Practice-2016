@@ -3,7 +3,7 @@ var gulp = require('gulp'),
 	cssnano = require('gulp-cssnano'),
 	autoprefixer = require('autoprefixer'),
 	postcss = require('gulp-postcss'),
-	rename = require('gulp-rename')
+	rename = require('gulp-rename');
 
 gulp.task('css', function() {
 	var processors = [
@@ -21,7 +21,7 @@ gulp.task('min', ['css'], function() {
 	.pipe(cssnano())
 	.pipe(rename({suffix: '.min'}))
 	.pipe(gulp.dest('css'))
-})
+});
 
 gulp.task('watch', ['min'], function() {
 	gulp.watch('sass/**/*.sass', ['css', 'min']);

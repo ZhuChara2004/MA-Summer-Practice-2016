@@ -18,7 +18,6 @@ def create_question(json):
 
 
 def create_answers(answer, id):
-    # answer = Answers(answer.answer, answer.question_id, answer.direction_id)
     answer = Answers(answer["answer"], id, answer["direction_id"])
     db.session.add(answer)
     db.session.commit()
@@ -49,13 +48,21 @@ def get_tests():
     return Test.query.all()
 
 
-def delete_question(self, id):
+def delete_question(id):
     question = Questions.query.filter_by(id=id).first()
+    answers = Answers.query.filter_by(id=id).all()
+    db.session.delete(answers)
     db.session.delete(question)
     db.commite()
 
 
-def delete_direction(self, id):
+def delete_direction(id):
     direction = Directions.query.filter_by(id=id).first()
     db.session.delete(direction)
+    db.session.commit()
+
+
+def delete_test(id):
+    test = Test.query.filter_by(id=id).first()
+    db.session.delete(test)
     db.session.commit()
