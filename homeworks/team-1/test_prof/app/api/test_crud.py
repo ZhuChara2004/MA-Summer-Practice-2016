@@ -22,7 +22,7 @@ def create_answers(answer):
 
 
 def create_direction(name):
-    direction = Directions('Yurik')
+    direction = Directions(name)
     db.session.add(direction)
     db.session.commit()
 
@@ -42,4 +42,13 @@ def get_test(id):
     return test
 
 
+def delete_question(self, id):
+    question = Questions.query.filter_by(id=id).first()
+    db.session.delete(question)
+    db.commite()
 
+
+def delete_direction(self, id):
+    direction = Directions.query.filter_by(id=id).first()
+    db.session.delete(direction)
+    db.session.commit()

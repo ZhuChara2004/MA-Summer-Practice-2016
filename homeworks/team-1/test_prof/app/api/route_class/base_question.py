@@ -1,10 +1,11 @@
-from flask_restful import Resource
+from flask_restful import Resource, request
 from test_prof.app.api.service import (question_to_json,
-                                   questions_to_json,
-                                   direction_to_json,
-                                   questions_id_list,
-                                   control_question_to_json,
-                                   create)
+                                       questions_to_json,
+                                       direction_to_json,
+                                       questions_id_list,
+                                       control_question_to_json,
+                                       create,
+                                       Delete)
 
 from test_prof.app.api.test_crud import (get_question, get_test, get_direction)
 
@@ -12,6 +13,9 @@ from test_prof.app.api.test_crud import (get_question, get_test, get_direction)
 class Question(Resource):
     def get(self, id):
         return {'question': question_to_json(get_question(id))}
+
+    def delete(self, id):
+        return Delete.delete_q(id)
 
 
 class Questions(Resource):
@@ -22,6 +26,12 @@ class Questions(Resource):
 class Direction(Resource):
     def get(self, id):
         return direction_to_json(get_direction(id))
+
+    def post(self, id):
+        print(request.json)
+
+    def delete(self, id):
+        Delete.delete_d(id)
 
 
 class QuestionsIds(Resource):
@@ -35,6 +45,6 @@ class ControlQuestion(Resource):
 
 
 class Create(Resource):
-    def get(self, json):
-        return create(json)
-
+    def post(self, method):
+        json = request.json
+        return create(method, json)

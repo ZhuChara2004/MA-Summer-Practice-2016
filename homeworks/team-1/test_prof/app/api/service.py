@@ -1,5 +1,5 @@
 import json
-from .test_crud import create_test, create_direction
+from .test_crud import create_test, create_direction, delete_question, delete_direction
 from .admin import equals
 
 
@@ -77,20 +77,28 @@ def control_question_to_json(question, args):
     }
 
 
-def create(j):
+def create(method_name, j):
     print(j)
-    obj = json.loads(j)
+    s = json.dumps(j)
+    obj = json.loads(s)
+    print(obj["name"])
     if equals(obj["token"]):
-        method_name = obj["method"]
-        print(method_name)
-        if method_name == "c_test":
-            create_test(obj['body'][0]['name'])
+        if method_name == "test":
+            create_test(obj['name'])
             return {"response": "ok"}
-        elif method_name == "c_question":
+        elif method_name == "question":
             # add create question
             return {"response": "ok"}
-        elif method_name == "c_direction":
-            create_direction(obj['body'][0]['name'])
+        elif method_name == "direction":
+            create_direction(obj['name'])
             return {"response": "ok"}
 
 # http://127.0.0.1:5000/api/v1.0/create/{"method" : "c_test", "body" :[ {"name" : "CDTU_test"}], "token":"secret_token"}
+
+
+class Delete:
+    def delete_q(self, id):
+        delete_question(id)
+
+    def delete_d(self, id):
+        delete_direction(id)
