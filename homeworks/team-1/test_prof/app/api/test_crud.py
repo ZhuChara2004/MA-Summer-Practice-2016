@@ -45,6 +45,10 @@ def get_test(id):
     return test
 
 
+def get_tests():
+    return Test.query.all()
+
+
 def delete_question(self, id):
     question = Questions.query.filter_by(id=id).first()
     db.session.delete(question)

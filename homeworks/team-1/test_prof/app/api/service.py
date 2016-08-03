@@ -1,6 +1,6 @@
 import json
 from .test_crud import create_test, create_direction, delete_question, delete_direction, create_question
-from .models import Answers
+from test_prof.app.api.test_crud import (get_question, get_test, get_direction, get_tests)
 from .admin import equals
 
 
@@ -94,8 +94,6 @@ def create(method_name, j):
             create_direction(obj['body'])
             return {"response": "ok"}
 
-# http://127.0.0.1:5000/api/v1.0/create/{"method" : "c_test", "body" :[ {"name" : "CDTU_test"}], "token":"secret_token"}
-
 
 class Delete:
     def delete_q(self, id):
@@ -105,9 +103,12 @@ class Delete:
         delete_direction(id)
 
 
-def test():
-    body = "Як справи ?"
-    # answ = []
-    # answ.append[]
-    # answ.append[Answers("good")]
-    create_question(body, 0, 2, ["good", "norm"])
+def get_t():
+        tests = get_tests()
+        list_test = []
+        for test in tests:
+            list_test.append(
+                {"test": test.name_test, "id": test.id}
+            )
+        return list_test
+
