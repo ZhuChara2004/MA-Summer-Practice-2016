@@ -7,16 +7,19 @@ def create_test(name):
     db.session.commit()
 
 
-def create_question(question, direction_id, test_id, answers):
-    question = Questions(question, direction_id, test_id)
+def create_question(json):
+    question = Questions(json["question"], json["direction_id"], json["test_id"])
     db.session.add(question)
-    db.session.commit()
+    db.session.flush()
+    answers = json["answers"]
     for answer in answers:
-        create_answers(answer)
+        create_answers(answer, question.id)
+    db.session.commit()
 
 
-def create_answers(answer):
-    answer = Answers(answer.answer, answer.question_id, answer.direction_id)
+def create_answers(answer, id):
+    # answer = Answers(answer.answer, answer.question_id, answer.direction_id)
+    answer = Answers(answer["answer"], id, answer["direction_id"])
     db.session.add(answer)
     db.session.commit()
 

@@ -1,5 +1,6 @@
 import json
-from .test_crud import create_test, create_direction, delete_question, delete_direction
+from .test_crud import create_test, create_direction, delete_question, delete_direction, create_question
+from .models import Answers
 from .admin import equals
 
 
@@ -81,16 +82,16 @@ def create(method_name, j):
     print(j)
     s = json.dumps(j)
     obj = json.loads(s)
-    print(obj["name"])
+    print(obj["body"])
     if equals(obj["token"]):
         if method_name == "test":
-            create_test(obj['name'])
+            create_test(obj['body'])
             return {"response": "ok"}
         elif method_name == "question":
-            # add create question
+            create_question(obj['body'])
             return {"response": "ok"}
         elif method_name == "direction":
-            create_direction(obj['name'])
+            create_direction(obj['body'])
             return {"response": "ok"}
 
 # http://127.0.0.1:5000/api/v1.0/create/{"method" : "c_test", "body" :[ {"name" : "CDTU_test"}], "token":"secret_token"}
@@ -102,3 +103,11 @@ class Delete:
 
     def delete_d(self, id):
         delete_direction(id)
+
+
+def test():
+    body = "Як справи ?"
+    # answ = []
+    # answ.append[]
+    # answ.append[Answers("good")]
+    create_question(body, 0, 2, ["good", "norm"])
