@@ -4,30 +4,136 @@
 
 body
 	background: #fff
+	color: #333333
+	font-family: 'Open Sans', serif
 
-.content
+a
+	text-decoration: none
+
+ul
+	list-style: none
+
+#content
 	width: 800px
-	margin: 100px auto
+	margin: auto
 	text-align: center
 
 	.head-text
 		font-size: 45px
+		margin-top: 100px
 
-form
-	margin-top: 50px
-	
-	p
-		padding-top: 30px
-		font-size: 22px
-		text-align: left
-
-	input[type=radio]
-		margin-right: 20px
-
-	.button
-		padding: 20px 100px
+	.test
 		margin-top: 50px
-		font-size: 30px
 
-		&:hover
-			cursor: pointer
+		p
+			padding-top: 30px
+			font-size: 24px
+			text-align: left
+
+		input[type=radio]
+			vertical-align: top
+			margin: 6px 20px 0 0
+			width: 24px
+			height: 24px
+
+		a
+			padding: 20px 40px
+			margin-right: 10px
+
+.test .button,
+.login .button,
+.new-test .button
+	margin-top: 50px
+	font-size: 24px
+	border-radius: 50px
+	border: 1px solid #acacac
+	background: #fff
+	color: #acacac
+
+.test button,
+.login button,
+.new-test button
+	padding: 23px 50px
+
+.button:hover,
+#admin-content h1 a:hover
+	background: #f04933
+	color: #fff
+	border: 1px solid #f04933
+
+.button
+	&:hover
+		cursor: pointer
+	&:focus
+		outline: none
+
+.login
+	width: 400px
+	min-height: 300px
+	border: 1px solid #acacac
+	margin: 250px auto
+
+	input
+		width: 80%
+
+.login input,
+.new-test input
+	padding: 10px
+	border-radius: 10px
+	outline: none
+	box-shadow: 0px 0px 3px #ccc, 0 10px 15px #eee inset
+	border: 1px solid #aaa
+	margin-top: 20px
+
+#admin-content
+	width: 1200px
+	margin: auto
+	text-align: center
+
+	h1
+		margin-top: 100px
+		margin-bottom: 50px
+
+		a
+			margin-top: 50px
+			font-size: 24px
+			border-radius: 50px
+			border: 1px solid #acacac
+			background: #fff
+			color: #acacac
+			padding: 10px
+			margin-left: 20px
+
+	p
+		margin-top: 20px
+
+		a
+			color: #333333
+			font-size: 24px
+
+			&:hover
+				text-decoration: underline
+
+.update
+	margin-left: 50px
+	color: #acacac !important
+
+	&:hover
+		color: #f04933 !important
+
+.new-test
+	a
+		padding: 20px 40px
+		margin-left: 20px
+
+	input
+		width: 65%
+
+.input-answer
+	margin-left: 100px
+
+.rout-to-main
+	color: #acacac
+
+	&:hover
+		text-decoration: underline
