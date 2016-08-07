@@ -16,16 +16,13 @@ ul {
 #content {
   width: 800px;
   margin: auto;
-  text-align: center; }
+  text-align: center;
+  padding-bottom: 50px; }
   #content .head-text {
     font-size: 45px;
     margin-top: 100px; }
   #content .test {
     margin-top: 50px; }
-    #content .test p {
-      padding-top: 30px;
-      font-size: 24px;
-      text-align: left; }
     #content .test input[type=radio] {
       vertical-align: top;
       margin: 6px 20px 0 0;
@@ -34,6 +31,13 @@ ul {
     #content .test a {
       padding: 20px 40px;
       margin-right: 10px; }
+  #content .image {
+    margin: 30px 0; }
+  #content p {
+    font-size: 24px; }
+  #content .result, #content .answer {
+    text-align: left;
+    padding: 30px 5px 0; }
 
 .test .button,
 .login .button,
