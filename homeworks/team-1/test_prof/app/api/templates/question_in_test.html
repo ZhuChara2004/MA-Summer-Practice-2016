@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Профорієнтаційний тест</title>
+	<link rel="stylesheet" href="../static/css/main.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:600,400&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <script src="js/run_test.js"></script>
+</head>
+<body>
+<h1 class="head-text" id="number_question_in_list"></h1>
+<div id="content">
+		<h1 class="head-text"><div id="question_body"></div></h1>
+		<form id="list_ans" action="" class="test">
+			<p class="answer"><input type="radio" id="radio1" name="answer" value="a1"><label for="radio1">з розповідей, на слух</label></p>
+			<p class="answer"><input type="radio" id="radio2" name="answer" value="a2"><label for="radio2">візуально (люблю ілюстрації)</label></p>
+			<p class="answer"><input type="radio" id="radio3" name="answer" value="a3"><label for="radio3">через дії, практично</label></p>
+			<p class="answer"><input type="radio" id="radio4" name="answer" value="a4"><label for="radio4">з Інтернету, книг, довідників</label></p>
+			<a href="" class="button">Назад</a>
+			<button onclick="loadTests()" type="submit" class="button">Далі</button>
+		</form>
+	</div>
+<script type="text/javascript">
+    var list_answers = localStorage.getItem("list_answ");
+    if (list_answers == null){
+        var id = '{{t_id}}';
+        var ids = [];
+        outTest = [];
+        var xmlhttp = new XMLHttpRequest();
+        var url = "http://127.0.0.1:5000/api/v1.0/questions/" + id + "/direction/0";
+
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                parseListIds(xmlhttp.responseText);
+            }
+        };
+        xmlhttp.open("GET", url, false);
+        xmlhttp.send();
+
+        function parseListIds(response) {
+
+            var json = JSON.parse(response);
+//            alert(json["list_ids"].length);
+            for (i = 0; i< json["list_ids"].length; i++){
+//                alert(json["list_ids"][i]["question_id"])
+                ids[i] = json["list_ids"][i]["question_id"]
+            }
+            list_answers = '{"count": "'+ json["list_ids"].length +'", "answers":[], "questions":['+ ids +']}';
+//            alert(list_answers)
+//            localStorage.setItem("list_answ", list_answers);
+//        alert("local storage not exist");
+            nextQuestion()
+
+
+        }
+    }else {
+        alert("local storage exist");
+        nextQuestion()
+    }
+
+    function nextQuestion() {
+        var obj = JSON.parse(list_answers);
+        for (qw = 0; qw < obj["count"]; qw++){
+            if(obj["answers"][qw] == null){
+                getQuestion(qw, obj["count"]);
+//                return
+            }
+        }
+    }
+
+    function getQuestion(questionId, all_count) {
+        var url = "http://127.0.0.1:5000/api/v1.0/question/" + questionId;
+
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                parseQuestion(xmlhttp.responseText, questionId, all_count);
+            }
+        };
+        xmlhttp.open("GET", url, false);
+        xmlhttp.send();
+
+    }
+
+    function parseQuestion(result, questionId, all_count) {
+        var obj = JSON.parse(result);
+//        alert("stop");
+        document.getElementById("question_body").innerHTML = obj["question"]["body"];
+        document.getElementById("number_question_in_list").innerHTML = questionId+1 + " із " + all_count
+    }
+
+</script>
+</body>
+</html>

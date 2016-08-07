@@ -14,6 +14,11 @@ def update_test(test_id):
     return render_template('new_question.html')
 
 
+@app.route('/test<test_id>')
+def run_test(test_id):
+    return render_template('question_in_test.html', t_id=test_id)
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def get_user():
     if request.method == 'GET':
