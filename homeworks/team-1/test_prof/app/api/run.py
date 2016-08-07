@@ -9,6 +9,11 @@ def get_tests():
     return render_template('test_index.html')
 
 
+@app.route('/<id>', methods=['GET'])
+def test(id):
+    return render_template("test.html", id=id)
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def get_user():
     if request.method == 'GET':
@@ -35,10 +40,9 @@ def logout():
     return resp
 
 
-@app.route('/<id>', methods=['GET'])
-def test(id):
-    return render_template("test.html", id=id)
-
+@app.route('/new_test', methods=['GET'])
+def new_test():
+    return render_template('new_test.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

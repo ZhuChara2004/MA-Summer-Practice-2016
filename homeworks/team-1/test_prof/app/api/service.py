@@ -80,9 +80,9 @@ def control_question_to_json(question, args):
 
 def create(method_name, j):
     print(j)
-    s = json.dumps(j)
-    obj = json.loads(s)
-    print(obj["body"])
+    # s = json.dumps(j)
+    obj = json.loads(j)
+    print(obj['body'])
     if equals(obj["token"]):
         if method_name == "test":
             create_test(obj['body'])
