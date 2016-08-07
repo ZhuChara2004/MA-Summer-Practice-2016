@@ -13,10 +13,6 @@ function createTest() {
     xhr.send(JSON.stringify(json));
 }
 
-function getAllTests() {
-//     
-}
-
 function getCookie(cname) {
     var name = cname + "=";
     var ca = document.cookie.split(';');

@@ -4,14 +4,14 @@ from test_prof.app.api.admin import auth, equals
 import datetime
 
 
-@app.route('/', methods=['GET'])
-def get_tests():
-    return render_template('test_index.html')
-
-
 @app.route('/<id>', methods=['GET'])
 def test(id):
     return render_template("test.html", id=id)
+
+
+@app.route('/update/<test_id>')
+def update_test(test_id):
+    return render_template('new_question.html')
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -43,6 +43,11 @@ def logout():
 @app.route('/new_test', methods=['GET'])
 def new_test():
     return render_template('new_test.html')
+
+
+@app.route('/', methods=['GET'])
+def index():
+    return render_template('index.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

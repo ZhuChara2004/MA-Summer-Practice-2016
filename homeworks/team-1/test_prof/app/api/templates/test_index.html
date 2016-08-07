@@ -21,16 +21,6 @@
 			<!--<button onclick="loadTests()" type="submit" class="button">Далі</button>-->
 		</form>
 	</div>
-<script>
-    $.getJSON("http://127.0.0.1:5000/api/v1.0/tests", function (data) {
-//        alert(data.length);
-        var out = "";
-        for (i = 0; i < data.length; i++) {
-            out += "<p><label><a href="+ data[i].id +">" + data[i].test + "</a></label></p>";
-        }
-        document.getElementById("listTest").innerHTML = out;
-    })
-</script>
 <script src="../static/js/main.js"></script>
 </body>
 </html>
