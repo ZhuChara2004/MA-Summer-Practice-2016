@@ -6,7 +6,7 @@ import datetime
 
 @app.route('/update/<test_id>')
 def update_test(test_id):
-    return render_template('new_question.html')
+    return render_template('update_questions.html', t_id=test_id)
 
 
 @app.route('/test<test_id>')
