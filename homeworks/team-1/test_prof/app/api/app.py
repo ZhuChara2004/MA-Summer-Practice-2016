@@ -4,11 +4,6 @@ from test_prof.app.api.admin import auth, equals
 import datetime
 
 
-@app.route('/<id>', methods=['GET'])
-def test(id):
-    return render_template("test.html", id=id)
-
-
 @app.route('/update/<test_id>')
 def update_test(test_id):
     return render_template('new_question.html')

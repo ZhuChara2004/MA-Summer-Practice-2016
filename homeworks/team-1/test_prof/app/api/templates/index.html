@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>Профорієнтаційний тест</title>
-	<link rel="stylesheet" href="../static/css/main.min.css">
-	<link href='https://fonts.googleapis.com/css?family=Open+Sans:600,400&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Профорієнтаційний тест</title>
+    <link rel="stylesheet" href="../static/css/main.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:600,400&subset=latin,cyrillic' rel='stylesheet'
+          type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 <body>
-	<div id="content">
-		<h1 class="head-text">Оберіть тест</h1>
-		<div id="listTest" class="test"></div>
-	</div>
+<div id="content">
+    <h1 class="head-text">Оберіть тест</h1>
+    <div id="listTest" class="test"></div>
+</div>
 <script>
+    localStorage.removeItem("list_answ");
     $.getJSON("http://127.0.0.1:5000/api/v1.0/tests", function (data) {
         var out = "";
         for (i = 0; i < data.length; i++) {
-            out += "<p><label><a href='test"+ data[i].id +"'>" + data[i].test + "</a></label></p>";
+            out += "<p><label><a href='test" + data[i].id + "'>" + data[i].test + "</a></label></p>";
         }
         document.getElementById("listTest").innerHTML = out;
     })
