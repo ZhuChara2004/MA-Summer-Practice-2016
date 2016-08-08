@@ -10,18 +10,18 @@
 <body>
 <div id="admin-content">
     <a href="/login" class="rout-to-main">Головна</a>
-    <h1>Створення нового запитання:</h1>
-    <div class="new-test">
-        <div class="questions">
-            <div class="question">
-                <p><input type="text" placeholder="Назва запитання"></p>
-                <p><input type="text" placeholder="Відповідь" class="input-answer"></p>
-                <p><input type="text" placeholder="Відповідь" class="input-answer"></p>
-            </div>
-        </div>
-        <!--<button type="submit" class="button">Створити</button>-->
+    <!--<h1>Створення нового запитання:</h1>-->
+    <div id="block_a" class="new-test">
+        <!--<div class="questions">-->
+            <!--<div class="question">-->
+            <!--<p><input type="text" placeholder="Назва запитання"></p>-->
+            <!--<p><input type="text" placeholder="Відповідь" class="input-answer"></p>-->
+            <!--<p><input type="text" placeholder="Відповідь" class="input-answer"></p>-->
+            <!--</div>-->
+        <!--</div>-->
         <!--<button class="button" onclick="addAnswer()">Додати відповідь</button>-->
         <!--<button class="button" onclick="addQuestion()">Додати запитання</button>-->
+        <!--<button type="submit" class="button">Створити</button>-->
     </div>
 </div>
 <script src="http://code.jquery.com/jquery-1.11.0.js"></script>
@@ -31,6 +31,18 @@
     id = "{{t_id}}";
 
 
+    function parseQest(response) {
+        q = response["question"];
+        out += "<div class='question'>" +
+                "<p><input type='text' placeholder='Назва запитання' value='" + q["body"] + "'></p>";
+        for (answer = 0; answer < q["answers"].length; answer++){
+            a = q["answers"][answer];
+            out += "<p><input type='text' placeholder='Відповідь' class='input-answer' value='"+a["body"]+"'></p>";
+        }
+        out += "</div>";
+
+    }
+
     function parseIds(responseText) {
         var json = JSON.parse(responseText);
         for (i = 0; i < json["list_ids"].length; i++) {
@@ -38,12 +50,15 @@
             var url = "http://127.0.0.1:5000/api/v1.0/question/" + idQuestion;
             xmlhttp.onreadystatechange = function () {
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-//                    (xmlhttp.responseText);
+                    parseQest(JSON.parse(xmlhttp.responseText));
                 }
             };
             xmlhttp.open("GET", url, false);
             xmlhttp.send();
         }
+        out += "<button class='button' onclick='addQuestion()'>Додати запитання</button>" +
+                "<a href='/login'><button type='submit' class='button'>Створити</button></a>";
+        document.getElementById("block_a").innerHTML = out
     }
     var url = "http://127.0.0.1:5000/api/v1.0/questions/" + id + "/direction/all";
     xmlhttp.onreadystatechange = function () {
@@ -65,4 +80,5 @@
         $(".questions").append("<div class='question'><p><input type='text' placeholder='Назва запитання'></p><p><input type='text' placeholder='Відповідь' class='input-answer'></p><p><input type='text' placeholder='Відповідь' class='input-answer'></p></div>");
     }
 </script>
+</body>
 </html>
