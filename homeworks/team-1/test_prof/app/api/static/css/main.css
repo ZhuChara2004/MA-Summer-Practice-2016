@@ -48,7 +48,8 @@ ul {
           border-radius: 50px;
   border: 1px solid #acacac;
   background: #fff;
-  color: #acacac; }
+  color: #acacac;
+  margin-bottom: 50px; }
 
 .test button,
 .login button,
@@ -125,7 +126,8 @@ ul {
   width: 65%; }
 
 .input-answer {
-  margin-left: 100px; }
+  margin-left: 60px;
+  width: 60% !important; }
 
 .rout-to-main {
   color: #acacac; }

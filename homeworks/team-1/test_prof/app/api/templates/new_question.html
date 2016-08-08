@@ -4,36 +4,37 @@
     <meta charset="UTF-8">
     <title>Нове запитання</title>
     <link rel="stylesheet" href="../static/css/main.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:600,400&subset=latin,cyrillic' rel='stylesheet'
-          type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:600,400&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 </head>
 <body>
-<div id="admin-content">
-    <a href="/login" class="rout-to-main">Головна</a>
-    <h1>Створення нового запитання:</h1>
-    <form action="" class="new-test">
-        <div id="question">
-            <p><input type="text" placeholder="Назва запитання"></p>
-            <div id="answer_block">
-                <p><input type="text" placeholder="Відповідь" class="input-answer"></p>
-                <p><input type="text" placeholder="Відповідь" class="input-answer"></p>
+    <div id="admin-content">
+        <a href="admin.html" class="rout-to-main">Головна</a>
+        <h1>Створення нового запитання:</h1>
+        <form action="" class="new-test">
+            <div class="questions">
+                <div class="question">
+                    <p><input type="text" placeholder="Назва запитання"></p>
+                    <p><input type="text" placeholder="Відповідь" class="input-answer"></p>
+                    <p><input type="text" placeholder="Відповідь" class="input-answer"></p>
+                </div>
             </div>
-            <p><a onclick="add()" class="button">Додати відповідь</a></p>
-            <script>
-                function add() {
-                    document.getElementById("answer_block").innerHTML =
-                            "<p><input type='text' placeholder='Відповідь' class='input-answer'></p>"
-                }
-            </script>
-        </div>
+            <button type="submit" class="button">Створити</button>
+            <button class="button" onclick="addAnswer()">Додати відповідь</button>
+            <button class="button" onclick="addQuestion()">Додати запитання</button>
+        </form>
+    </div>
+    <script src="http://code.jquery.com/jquery-1.11.0.js"></script>
+    <script>
+        function addAnswer() {
+            var answer = parseInt($(".question").find("p:last"));
+         
+            $("div.question").append("<p><input type='text' placeholder='Відповідь' class='input-answer'/></p>");
+        }
 
-        <p><input type="text" placeholder="Назва запитання"></p>
-        <p><input type="text" placeholder="Відповідь" class="input-answer"></p>
-        <p><input type="text" placeholder="Відповідь" class="input-answer"></p>
-
-        <button type="submit" class="button">Створити</button>
-        <a href="#" class="button">Додати запитання</a>
-    </form>
-</div>
+        function addQuestion() {
+            var question = parseInt($(".questions").find("div:last"));
+            $(".questions").append("<div class='question'><p><input type='text' placeholder='Назва запитання'></p><p><input type='text' placeholder='Відповідь' class='input-answer'></p><p><input type='text' placeholder='Відповідь' class='input-answer'></p></div>");
+        }
+    </script>
 </body>
 </html>
