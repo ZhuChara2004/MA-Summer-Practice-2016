@@ -16,11 +16,13 @@ class Questions(db.Model):
     direction_id = db.Column(db.Integer, db.ForeignKey('directions.id'))
     test_id = db.Column(db.Integer, db.ForeignKey('test.id'))
     answers = db.relationship('Answers', backref='questions', lazy='dynamic')
+    is_control = db.Column(db.Boolean)
 
-    def __init__(self, question, direction_id, test_id):
+    def __init__(self, question, direction_id, test_id, is_control):
         self.question = question
         self.direction_id = direction_id
         self.test_id = test_id
+        self. is_control = is_control
 
 
 class Answers(db.Model):

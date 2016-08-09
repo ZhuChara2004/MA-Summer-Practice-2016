@@ -25,7 +25,8 @@ def question_to_json(question):
         'body': question.question,
         'direction': question.direction_id,
         'test_id': question.test_id,
-        'answers': answers_to_json(question)
+        'answers': answers_to_json(question),
+        'is_control': question.is_control
     }
 
 
