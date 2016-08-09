@@ -8,7 +8,7 @@ from test_prof.app.api.service import (question_to_json,
                                        Delete,
                                        get_t)
 
-from test_prof.app.api.test_crud import (get_question, get_test, get_direction)
+from test_prof.app.api.test_crud import (get_question, get_test, get_direction, get_control_question)
 
 
 class Question(Resource):
@@ -41,8 +41,8 @@ class QuestionsIds(Resource):
 
 
 class ControlQuestion(Resource):
-    def get(self, question_id, args):
-        return control_question_to_json(get_question(question_id), args)
+    def get(self, test_id, direction_id):
+        return question_to_json(get_control_question(test_id, direction_id))
 
 
 class Create(Resource):

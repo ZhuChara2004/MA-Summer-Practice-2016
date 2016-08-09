@@ -60,25 +60,6 @@ def questions_id_list(test, direction):
     return {'list_ids': list_ids}
 
 
-def control_question_to_json(question, args):
-    if question.direction_id == 0:
-        return {'error': 'question is not control'}
-    args = args.split('/')
-    list_answers = []
-    for a in question.answers:
-        for item in args:
-            if a.id is int(item):
-                list_answers.append({
-                    'answer': a.answer,
-                    'direction_id': a.direction_id
-                })
-    return {
-        'body': question.question,
-        'id': question.id,
-        'answers': list_answers
-    }
-
-
 def create(method_name, j):
     print(j)
     # s = json.dumps(j)
