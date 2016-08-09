@@ -30,7 +30,7 @@
     runTest();
     function runTest() {
         list_answers = localStorage.getItem("list_answ");
-        localStorage.removeItem("list_answ");
+//        localStorage.removeItem("list_answ");
         l = JSON.parse(list_answers);
         id = '{{t_id}}';
         if (list_answers == null) {
@@ -60,13 +60,12 @@
             }
         }
         if (endPart) {
-            localStorage.removeItem("list_answ");
             calculationAnswers(l["answers"])
         }
     }
     var max;
     function calculationAnswers(list) {
-        alert(list);
+//        alert(list);
         var listMap = {};
         var listKey = [];
         for (i = 0; i < list.length; i++) {
@@ -97,15 +96,16 @@
         var povtL = [max];
         keyz = Object.keys(listMap);
         for (z = 0; z < Object.keys(listMap).length; z++) {
-            alert("listM = " + keyz[z] + ":" + listMap[keyz[z]]);
+//            alert("listM = " + keyz[z] + ":" + listMap[keyz[z]]);
             if (listMap[keyz[z]] == listMap[max] && keyz[z] != max) {
                 povtL.push(keyz[z]);
                 povt = true;
             }
         }
-        alert(max + " " + povt + " l=" + povtL);
+//        alert(max + " " + povt + " l=" + povtL);
         if (povt) {
-            getControlQuestion()
+//            getControlQuestion()
+            getListQuestionsIds(id, max)
         } else {
             getListQuestionsIds(id, max)
         }
@@ -166,6 +166,7 @@
     }
 
     function getListQuestionsIds(id, direction) {
+        localStorage.removeItem("list_answ");
         var url = "http://127.0.0.1:5000/api/v1.0/questions/" + id + "/direction/" + direction;
 
         xmlhttp.onreadystatechange = function () {
@@ -200,7 +201,7 @@
     function finish(direction_finish_id) {
         var res;
         var url = "http://127.0.0.1:5000/api/v1.0/direction/" + direction_finish_id;
-
+        localStorage.removeItem("list_answ");
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                 res = xmlhttp.responseText;
@@ -209,11 +210,11 @@
         xmlhttp.open("GET", url, false);
         xmlhttp.send();
         res = JSON.parse(res);
-        alert(JSON.stringify(res));
+//        alert(JSON.stringify(res));
 
         out = "<div id='content'>" +
                 "<h1 class='head-text'>" + res["direction"] + "</h1>" +
-                "<img src='../img/1.png' alt='' class='image'>" +
+                "<img src='img/1.png' alt='' class='image'>" +
                 "<p class='result'>" +
 //                "Твоя ідеальна професія може бути пов’язана з дизайном стилю та зачіски. Ти креативний, комунікабельний, працьовитий, маєш гарні уяву та естетичний смак, володієш чудовим відчуттям стилю та мрієш привнести у світ щось нове, гарно поєднуєш речі, які багатьом на перший погляд здаються несумісними." +
 //                "</p><p class='result'>" +
@@ -221,7 +222,7 @@
 //                "</p><p style='text-align: center; color: #acacac;' class='result'>" +
 //                "Цікавий факт! Саме Коко Шанель запровадила моду на засмагу. Це сталось на початку 1920-х рр., коли вона повернулась із відпочинку на яхті із золотаво–бронзовою шкірою. Доти взірцевою була порцеляново біла шкіра." +
 //                "</p><p style='text-align: center; font-weight: bold;' class='result'>" +
-                "Дану професію ти можеш опанувати обравши навчання у ЧДБК за освітньою програмою «"+ res["direction"] +"»." +
+                "Дану професію ти можеш опанувати обравши навчання у ЧДБК за освітньою програмою «" + res["direction"] + "»." +
                 "</p></div>";
         document.getElementById("content").innerHTML = out;
     }
