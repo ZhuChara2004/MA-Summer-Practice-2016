@@ -10,31 +10,22 @@
     <div id="admin-content">
         <a href="admin.html" class="rout-to-main">Головна</a>
         <h1>Створення нового запитання:</h1>
-        <div  class="new-test">
-            <div class="questions">
-                <div class="question">
-                    <p><input type="text" placeholder="Назва запитання"></p>
-                    <p><input type="text" placeholder="Відповідь" class="input-answer"></p>
-                    <p><input type="text" placeholder="Відповідь" class="input-answer"></p>
+        <form action="" class="new-test">
+            <div id="questions">
+                <div id="question">
+                    <div id="answers" class="answers">
+                        <p><input type="text" placeholder="Назва запитання"></p>
+                        <p><input type="text" placeholder="Відповідь" class="input-answer"></p>
+                        <p><input type="text" placeholder="Відповідь" class="input-answer"></p>
+                    </div>
+                    <button class="button" onclick="addAnswer()">Додати відповідь</button>
                 </div>
             </div>
             <button type="submit" class="button">Створити</button>
-            <button class="button" onclick="addAnswer()">Додати відповідь</button>
             <button class="button" onclick="addQuestion()">Додати запитання</button>
-        </div>
+        </form>
     </div>
     <script src="http://code.jquery.com/jquery-1.11.0.js"></script>
-    <script>
-        function addAnswer() {
-            var answer = parseInt($(".question").find("p:last"));
-         
-            $("div.question").append("<p><input type='text' placeholder='Відповідь' class='input-answer'/></p>");
-        }
-
-        function addQuestion() {
-            var question = parseInt($(".questions").find("div:last"));
-            $(".questions").append("<div class='question'><p><input type='text' placeholder='Назва запитання'></p><p><input type='text' placeholder='Відповідь' class='input-answer'></p><p><input type='text' placeholder='Відповідь' class='input-answer'></p></div>");
-        }
-    </script>
+    <script src="../static/js/admin.js"></script>
 </body>
 </html>
