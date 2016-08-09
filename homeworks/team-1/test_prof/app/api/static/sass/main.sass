@@ -14,7 +14,7 @@ ul
 	list-style: none
 
 #content
-	width: 800px
+	width: 80%
 	margin: auto
 	text-align: center
 	padding-bottom: 50px;
@@ -60,7 +60,7 @@ ul
 .test button,
 .login button,
 .new-test button
-	padding: 23px 50px
+	padding: 23px 25px
 
 .button:hover,
 #admin-content h1 a:hover
@@ -75,7 +75,7 @@ ul
 		outline: none
 
 .login
-	width: 400px
+	width: 100%
 	min-height: 300px
 	border: 1px solid #acacac
 	margin: 250px auto
@@ -93,7 +93,7 @@ ul
 	margin-top: 20px
 
 #admin-content
-	width: 1200px
+	width: 80%
 	margin: auto
 	text-align: center
 
@@ -149,6 +149,7 @@ ul
 #listTest
 	margin-top: 50px
 	font-size: 24px
+	text-align: left
 
 	p
 		padding: 5px 0
@@ -158,3 +159,18 @@ ul
 
 		&:hover
 			color: #f04933
+
+@media(max-width:519px)
+	.test .button,
+	.login .button,
+	.new-test .button
+		margin-bottom: 10px
+		margin-top: 30px
+
+@media(min-width:500px)
+	.login
+		width: 400px
+
+@media(min-width:800px)
+	#content
+		width: 800px
