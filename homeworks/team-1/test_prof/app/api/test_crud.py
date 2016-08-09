@@ -8,7 +8,7 @@ def create_test(name):
 
 
 def create_question(json):
-    question = Questions(json["question"], json["direction_id"], json["test_id"])
+    question = Questions(json["question"], json["direction_id"], json["test_id"], json["is_control"])
     db.session.add(question)
     db.session.flush()
     answers = json["answers"]
