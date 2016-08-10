@@ -3,7 +3,7 @@ from test_prof.app.api.service import (question_to_json,
                                        questions_to_json,
                                        direction_to_json,
                                        questions_id_list,
-                                       control_question_to_json,
+                                       # control_question_to_json,
                                        create,
                                        Delete,
                                        get_t)

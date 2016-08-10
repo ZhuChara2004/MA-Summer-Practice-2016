@@ -53,10 +53,11 @@ def questions_id_list(test, direction):
                 'direction_id': q.direction_id
             })
         elif int(direction) == q.direction_id:
-            list_ids.append({
-                'question_id': q.id,
-                'direction_id': q.direction_id
-            })
+            if not q.is_control:
+                list_ids.append({
+                    'question_id': q.id,
+                    'direction_id': q.direction_id
+                })
     return {'list_ids': list_ids}
 
 
@@ -86,11 +87,10 @@ class Delete:
 
 
 def get_t():
-        tests = get_tests()
-        list_test = []
-        for test in tests:
-            list_test.append(
-                {"test": test.name_test, "id": test.id}
-            )
-        return list_test
-
+    tests = get_tests()
+    list_test = []
+    for test in tests:
+        list_test.append(
+            {"test": test.name_test, "id": test.id}
+        )
+    return list_test
