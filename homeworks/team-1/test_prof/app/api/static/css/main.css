@@ -148,12 +148,12 @@ ul {
 .header {
   width: 80%;
   margin: auto;
-  border-bottom: 1px solid #333333; }
+  border-bottom: 1px solid #666666; }
 
 .finish-test button {
   margin-left: 10px;
   font-size: 18px;
-  color: #acacac;
+  color: #666666;
   border: none;
   background: #fff; }
   .finish-test button:hover {
@@ -164,7 +164,8 @@ ul {
 #number_question_in_list {
   font-size: 18px;
   float: left;
-  margin-top: 15px; }
+  margin-top: 15px;
+  color: #666666; }
 
 @media (max-width: 519px) {
   .test .button,
