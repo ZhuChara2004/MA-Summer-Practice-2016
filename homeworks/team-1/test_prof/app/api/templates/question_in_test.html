@@ -10,12 +10,14 @@
     <!--<script src="js/run_test.js"></script>-->
 </head>
 <body>
-<form action="/">
+<div class="header">
+<h1 id="number_question_in_list"></h1>
+<form action="/" class="finish-test">
     <h1>
         <button onclick="deleteStorage()">Закінчити тест</button>
     </h1>
 </form>
-<h1 class="head-text" id="number_question_in_list"></h1>
+</div>
 <div id="content">
     <h1 class="head-text">
         <div id="question_body"></div>
@@ -314,7 +316,7 @@
         out = "<div id='content'>" +
                 "<h1 class='head-text'>Найкраще для тебе підійде освітній напрям</h1>" +
                 "<h1 class='head-text'>" + faculty["direction"] + "</h1>" +
-                "<img src='img/1.png' alt='' class='image'>" +
+                "<img src='../static/img/1.png' alt='' class='image'>" +
                 "<p class='result'>" +
 //                "Твоя ідеальна професія може бути пов’язана з дизайном стилю та зачіски. Ти креативний, комунікабельний, працьовитий, маєш гарні уяву та естетичний смак, володієш чудовим відчуттям стилю та мрієш привнести у світ щось нове, гарно поєднуєш речі, які багатьом на перший погляд здаються несумісними." +
 //                "</p><p class='result'>" +
