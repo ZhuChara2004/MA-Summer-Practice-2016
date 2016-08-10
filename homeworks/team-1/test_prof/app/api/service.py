@@ -53,7 +53,7 @@ def questions_id_list(test, direction):
                 'direction_id': q.direction_id
             })
         elif int(direction) == q.direction_id:
-            if not q.is_control:
+            if q.is_control == False:
                 list_ids.append({
                     'question_id': q.id,
                     'direction_id': q.direction_id

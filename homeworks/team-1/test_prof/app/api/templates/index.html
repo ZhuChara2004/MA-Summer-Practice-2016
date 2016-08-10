@@ -16,6 +16,7 @@
 </div>
 <script>
     localStorage.removeItem("list_answ");
+    localStorage.removeItem("dir_answ");
     $.getJSON("http://127.0.0.1:5000/api/v1.0/tests", function (data) {
         var out = "";
         for (i = 0; i < data.length; i++) {

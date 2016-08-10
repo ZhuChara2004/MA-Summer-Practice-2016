@@ -26,16 +26,22 @@
     var ids = [];
     var xmlhttp = new XMLHttpRequest();
     var list_answers;
+    var dir_answers;
     var l;
+    var parse_dir_answers;
     var id;
+    var direction = 0;
+    var tmp_ans = [];
     runTest();
     function runTest() {
         list_answers = localStorage.getItem("list_answ");
+        dir_answers = localStorage.getItem("dir_answ");
 //        localStorage.removeItem("list_answ");
         l = JSON.parse(list_answers);
+        parse_dir_answers = JSON.parse(dir_answers);
         id = '{{t_id}}';
         if (list_answers == null) {
-            getListQuestionsIds(id, 0)
+            getListQuestionsIds(id, direction)
         } else {
 //            alert("local storage exist");
 //            alert(JSON.stringify(l));
@@ -45,6 +51,7 @@
 
     function deleteStorage() {
         localStorage.removeItem("list_answ");
+        localStorage.removeItem("dir_answ")
     }
 
     function nextQuestion() {
@@ -103,20 +110,82 @@
                 povt = true;
             }
         }
-//        alert(max + " " + povt + " l=" + povtL);
+        alert(max + " " + povt + " l=" + povtL);
+
+//        parse_dir_answers["answ"].push(max);
+//        localStorage.setItem("dir_answ", JSON.stringify(parse_dir_answers));
         if (povt) {
-//            getControlQuestion()
-            getListQuestionsIds(id, max)
+            getControlQuestion(povtL);
+//            getListQuestionsIds(id, max)
         } else {
-            getListQuestionsIds(id, max)
+            if (direction == 0) {
+                tmp_ans[0] = parseInt(answer[a].value);
+            } else {
+                tmp_ans[1] = parseInt(answer[a].value)
+            }
+            direction = max;
+            parse_dir_answers["answ"].push(parseInt(direction));
+            alert(JSON.stringify(parse_dir_answers));
+            localStorage.setItem("dir_answ", JSON.stringify(parse_dir_answers));
+            getListQuestionsIds(id, direction)
         }
     }
 
-    function getControlQuestion() {
-        var url = "http://127.0.0.1:5000/api/v1.0//" + obj["questions"][questionId];
+    function saveToAnsw() {
+//        alert(JSON.stringify(parse_dir_answers));
+        var answer = document.getElementsByName("answer");
+        var answCount = answer.length;
+        for (a = 0; a < answCount; a++) {
+            if (answer[a].checked) {
+                alert(answer[a].value);
+                if (direction == 0) {
+                    parse_dir_answers["answ"][0] = parseInt(answer[a].value);
+                    tmp_ans[0] = parseInt(answer[a].value);
+                } else {
+                    parse_dir_answers["answ"][1] = parseInt(answer[a].value);
+                    tmp_ans[1] = parseInt(answer[a].value)
+                }
+//                parse_dir_answers["answ"][0]parseInt(answer[a].value));
+                alert(JSON.stringify(parse_dir_answers));
+                localStorage.setItem("dir_answ", JSON.stringify(parse_dir_answers));
+                direction = parseInt(answer[a].value);
+                getListQuestionsIds(id, direction)
+            }
+        }
+    }
+
+    function parseControl(responseText, listP) {
+        var respControl = JSON.parse(responseText);
+//        alert(JSON.stringify(respControl));
+        q_id = respControl["id"];
+        var outAsnwers = "";
+        document.getElementById("question_body").innerHTML = respControl["body"];
+        outAsnwers += "<div id='myForm'>";
+        for (i = 0; i < respControl["answers"].length; i++) {
+
+            for (indexLp = 0; indexLp < listP.length; indexLp++) {
+                if (listP[indexLp] == respControl["answers"][i]["direction"]) {
+                    outAsnwers += "<p class='answer'><input type='radio' id='radio" + respControl["answers"][i]["direction"] + "' " +
+                            "name='answer' value='" + respControl["answers"][i]["direction"] + "'>" +
+                            "<label for='radio" + respControl["answers"][i]["direction"] + "'" +
+                            ">" + respControl["answers"][i]["body"] + "</label></p>"
+                }
+            }
+        }
+        outAsnwers += "</div>";
+        outAsnwers += "<button onclick='saveToAnsw()' type='submit' class='button'>Далі</input>";
+        document.getElementById("block_answers_in_q").innerHTML = outAsnwers;
+
+
+    }
+
+    function getControlQuestion(listP) {
+        alert("Control");
+        var url = "http://127.0.0.1:5000/api/v1.0/control/" + id + "/direction/" + direction;
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                parseQuestion(xmlhttp.responseText, questionId, obj);
+//                alert(listP);
+                parseControl(xmlhttp.responseText, listP);
             }
         };
         xmlhttp.open("GET", url, false);
@@ -187,34 +256,63 @@
             }
             list_answers = '{"count": "' + parseInt(json["list_ids"].length) + '", "answers":[], "questions":[' + ids + ']}';
             localStorage.setItem("list_answ", list_answers);
+            dir_answers = '{"answ":[]}';
+            localStorage.setItem("dir_answ", dir_answers);
 //            alert("local storage not exist");
 //            nextQuestion();
             runTest()
         } else {
 //            finish test !!!!!!!!!!!!!!!!!!!!!!111
             alert("FINISH");
-            finish(max);
-            localStorage.removeItem("list_answ")
+            finish();
+//            localStorage.removeItem("list_answ")
 
         }
     }
 
-    function finish(direction_finish_id) {
-        var res;
-        var url = "http://127.0.0.1:5000/api/v1.0/direction/" + direction_finish_id;
-        localStorage.removeItem("list_answ");
+    function getDirection(id) {
+        var url = "http://127.0.0.1:5000/api/v1.0/direction/" + id;
+//        localStorage.removeItem("list_answ");
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                res = xmlhttp.responseText;
+                return JSON.stringify(JSON.parse(xmlhttp.responseText));
             }
         };
         xmlhttp.open("GET", url, false);
         xmlhttp.send();
-        res = JSON.parse(res);
+    }
+
+    function finish() {
+        d = localStorage.getItem("dir_answ");
+//        alert(JSON.stringify(JSON.parse(d)));
+        var faculty;
+        var person;
+        d = JSON.parse(d);
+//        alert(JSON.stringify(d));
+        alert(tmp_ans);
+
+//        faculty = getDirection(d["answ"][0]);
+
+        var url = "http://127.0.0.1:5000/api/v1.0/direction/" + tmp_ans[0];
+//        var url = "http://127.0.0.1:5000/api/v1.0/direction/" + d["answ"][0];
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                faculty = JSON.parse(xmlhttp.responseText)
+            }
+        };
+        xmlhttp.open("GET", url, false);
+        xmlhttp.send();
+
+        // it`s very bad
+
+//        alert("bla bla" + faculty["direction"]);
+
+//        faculty = JSON.parse(getDirection(d["answ"][0]));
+//        person = JSON.parse(getDirection(d["answ"][1]));
 //        alert(JSON.stringify(res));
 
         out = "<div id='content'>" +
-                "<h1 class='head-text'>" + res["direction"] + "</h1>" +
+                "<h1 class='head-text'>" + faculty["direction"] + "</h1>" +
                 "<img src='img/1.png' alt='' class='image'>" +
                 "<p class='result'>" +
 //                "Твоя ідеальна професія може бути пов’язана з дизайном стилю та зачіски. Ти креативний, комунікабельний, працьовитий, маєш гарні уяву та естетичний смак, володієш чудовим відчуттям стилю та мрієш привнести у світ щось нове, гарно поєднуєш речі, які багатьом на перший погляд здаються несумісними." +
@@ -223,8 +321,21 @@
 //                "</p><p style='text-align: center; color: #acacac;' class='result'>" +
 //                "Цікавий факт! Саме Коко Шанель запровадила моду на засмагу. Це сталось на початку 1920-х рр., коли вона повернулась із відпочинку на яхті із золотаво–бронзовою шкірою. Доти взірцевою була порцеляново біла шкіра." +
 //                "</p><p style='text-align: center; font-weight: bold;' class='result'>" +
-                "Дану професію ти можеш опанувати обравши навчання у ЧДБК за освітньою програмою «" + res["direction"] + "»." +
-                "</p></div>";
+                "Дану професію ти можеш опанувати обравши навчання у ЧДБК за освітньою програмою «" + faculty["direction"] + "».";
+//        if (d["answ"][1] != null) {
+        if (tmp_ans[1] != null) {
+            var url = "http://127.0.0.1:5000/api/v1.0/direction/" + tmp_ans[1];
+//            var url = "http://127.0.0.1:5000/api/v1.0/direction/" + d["answ"][1];
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    person = JSON.parse(xmlhttp.responseText)
+                }
+            };
+            xmlhttp.open("GET", url, false);
+            xmlhttp.send();
+            out += " В майбутньому ти можеш стати як " + person["direction"] + ".";
+        }
+        out += "</p></div>";
         document.getElementById("content").innerHTML = out;
     }
 
