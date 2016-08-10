@@ -8,7 +8,7 @@ def create_test(name):
 
 
 def create_question(json):
-    question = Questions(json["question"], json["direction_id"], json["test_id"])
+    question = Questions(json["question"], json["direction_id"], json["test_id"], json["is_control"])
     db.session.add(question)
     db.session.flush()
     answers = json["answers"]
@@ -32,6 +32,11 @@ def create_direction(name):
 def get_question(id):
     question = Questions.query.filter_by(id=id).first()
     return question
+
+
+def get_control_question(test_id, direction_id):
+    control_question = Questions.query.filter_by(id=test_id, direction_id=direction_id, is_control=True).first()
+    return control_question
 
 
 def get_direction(id):
