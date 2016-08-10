@@ -35,7 +35,7 @@ def get_question(id):
 
 
 def get_control_question(test_id, direction_id):
-    control_question = Questions.query.filter_by(id=test_id, direction_id=direction_id, is_control=True).first()
+    control_question = Questions.query.filter_by(test_id=test_id, direction_id=direction_id, is_control=True).first()
     return control_question
 
 
