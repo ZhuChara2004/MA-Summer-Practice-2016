@@ -1,5 +1,5 @@
 from test_prof.app.api.__init__ import app
-from .route_class.base_question import Question, Questions, Direction, QuestionsIds, ControlQuestion, Create, Tests
+from .route_class.base_question import Question, DirectionAnswer, Questions, Direction, QuestionsIds, ControlQuestion, Create, Tests
 from .unicode_api import UnicodeApi
 
 
@@ -11,3 +11,4 @@ api.add_resource(Questions, '/questions/<test_id>')
 api.add_resource(QuestionsIds, '/questions/<test_id>/direction/<direction>')
 api.add_resource(ControlQuestion, '/control/<test_id>/direction/<direction_id>')
 api.add_resource(Create, '/create/<method>')
+api.add_resource(DirectionAnswer, '/dir/<id>')

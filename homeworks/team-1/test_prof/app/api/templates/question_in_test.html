@@ -112,7 +112,7 @@
                 povt = true;
             }
         }
-        alert(max + " " + povt + " l=" + povtL);
+//        alert(max + " " + povt + " l=" + povtL);
 
 //        parse_dir_answers["answ"].push(max);
 //        localStorage.setItem("dir_answ", JSON.stringify(parse_dir_answers));
@@ -121,13 +121,13 @@
 //            getListQuestionsIds(id, max)
         } else {
             if (direction == 0) {
-                tmp_ans[0] = parseInt(answer[a].value);
+                tmp_ans[0] = max;
             } else {
-                tmp_ans[1] = parseInt(answer[a].value)
+                tmp_ans[1] = max
             }
             direction = max;
             parse_dir_answers["answ"].push(parseInt(direction));
-            alert(JSON.stringify(parse_dir_answers));
+//            alert(JSON.stringify(parse_dir_answers));
             localStorage.setItem("dir_answ", JSON.stringify(parse_dir_answers));
             getListQuestionsIds(id, direction)
         }
@@ -139,7 +139,7 @@
         var answCount = answer.length;
         for (a = 0; a < answCount; a++) {
             if (answer[a].checked) {
-                alert(answer[a].value);
+//                alert(answer[a].value);
                 if (direction == 0) {
                     parse_dir_answers["answ"][0] = parseInt(answer[a].value);
                     tmp_ans[0] = parseInt(answer[a].value);
@@ -148,7 +148,7 @@
                     tmp_ans[1] = parseInt(answer[a].value)
                 }
 //                parse_dir_answers["answ"][0]parseInt(answer[a].value));
-                alert(JSON.stringify(parse_dir_answers));
+//                alert(JSON.stringify(parse_dir_answers));
                 localStorage.setItem("dir_answ", JSON.stringify(parse_dir_answers));
                 direction = parseInt(answer[a].value);
                 getListQuestionsIds(id, direction)
@@ -182,7 +182,7 @@
     }
 
     function getControlQuestion(listP) {
-        alert("Control");
+//        alert("Control");
         var url = "http://127.0.0.1:5000/api/v1.0/control/" + id + "/direction/" + direction;
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
@@ -265,7 +265,7 @@
             runTest()
         } else {
 //            finish test !!!!!!!!!!!!!!!!!!!!!!111
-            alert("FINISH");
+//            alert("FINISH");
             finish();
 //            localStorage.removeItem("list_answ")
 
@@ -288,10 +288,10 @@
         d = localStorage.getItem("dir_answ");
 //        alert(JSON.stringify(JSON.parse(d)));
         var faculty;
-        var person;
+        var response;
         d = JSON.parse(d);
 //        alert(JSON.stringify(d));
-        alert(tmp_ans);
+//        alert(tmp_ans);
 
 //        faculty = getDirection(d["answ"][0]);
 
@@ -316,27 +316,26 @@
         out = "<div id='content'>" +
                 "<h1 class='head-text'>Найкраще для тебе підійде освітній напрям</h1>" +
                 "<h1 class='head-text'>" + faculty["direction"] + "</h1>" +
-                "<img src='../static/img/" + tmp_ans[1] + ".png' alt='' class='image'>" +
-                "<p class='result'>" +
-                "Твоя ідеальна професія може бути пов’язана з напрямком '" + faculty["direction"] + "' ";
+                "<img src='../static/img/" + tmp_ans[1] + ".jpg' alt='' class='image'>" +
+                "<p class='result'>";
 //                "</p><p class='result'>" +
 //                "В майбутньому ти можеш стати як Коко Шанель, яку по праву вважають найважливішою фігурою в історії моди XX століття. Шанель принесла в жіночу моду приталений жакет і маленьку чорну сукню, під її керівництвом було створено всесвітньо відомі парфуми «Chanel № 5». Вплив Коко на високу моду був такий сильний, що її — єдину з історії моди — журнал «Тime» вніс до списку ста найвпливовіших людей XX століття." +
 //                "</p><p style='text-align: center; color: #acacac;' class='result'>" +
 //                "Цікавий факт! Саме Коко Шанель запровадила моду на засмагу. Це сталось на початку 1920-х рр., коли вона повернулась із відпочинку на яхті із золотаво–бронзовою шкірою. Доти взірцевою була порцеляново біла шкіра." +
 //                "</p><p style='text-align: center; font-weight: bold;' class='result'>" +
-        out += "Дану професію ти можеш опанувати обравши навчання у ЧДБК за освітньою програмою «" + faculty["direction"] + "».";
+//        out += "Дану професію ти можеш опанувати обравши навчання у ЧДБК за освітньою програмою «" + faculty["direction"] + "».";
 //        if (d["answ"][1] != null) {
         if (tmp_ans[1] != null) {
-            var url = "http://127.0.0.1:5000/api/v1.0/direction/" + tmp_ans[1];
+            var url = "http://127.0.0.1:5000/api/v1.0/dir/" + tmp_ans[1];
 //            var url = "http://127.0.0.1:5000/api/v1.0/direction/" + d["answ"][1];
             xmlhttp.onreadystatechange = function () {
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                    person = JSON.parse(xmlhttp.responseText)
+                    response = JSON.parse(xmlhttp.responseText)
                 }
             };
             xmlhttp.open("GET", url, false);
             xmlhttp.send();
-            out += " В майбутньому ти можеш стати як " + person["direction"] + ".";
+            out += response["body"];
         }
         out += "</p></div>";
         document.getElementById("content").innerHTML = out;

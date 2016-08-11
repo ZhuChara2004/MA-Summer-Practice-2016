@@ -6,9 +6,10 @@ from test_prof.app.api.service import (question_to_json,
                                        # control_question_to_json,
                                        create,
                                        Delete,
-                                       get_t)
+                                       get_t,
+                                       direction_a_to_json)
 
-from test_prof.app.api.test_crud import (get_question, get_test, get_direction, get_control_question)
+from test_prof.app.api.test_crud import (get_question, get_test, get_direction, get_control_question, get_dir_answer)
 
 
 class Question(Resource):
@@ -54,3 +55,8 @@ class Create(Resource):
 class Tests(Resource):
     def get(self):
         return get_t()
+
+
+class DirectionAnswer(Resource):
+    def get(self, id):
+        return direction_a_to_json(get_dir_answer(id))

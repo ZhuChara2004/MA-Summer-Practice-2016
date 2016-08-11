@@ -1,4 +1,4 @@
-from .models import Questions, Answers, Directions, Test, db
+from .models import Questions, Answers, Directions, DirectionBody, Test, db
 
 
 def create_test(name):
@@ -51,6 +51,10 @@ def get_test(id):
 
 def get_tests():
     return Test.query.all()
+
+
+def get_dir_answer(id):
+    return DirectionBody.query.filter_by(id=id).first()
 
 
 def delete_question(id):

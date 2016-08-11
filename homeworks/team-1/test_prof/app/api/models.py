@@ -40,7 +40,15 @@ class Answers(db.Model):
 class Directions(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name_direction = db.Column(db.String(50))
-    name_answer = db.Column(db.String())
 
     def __init__(self, name):
         self.name_direction = name
+
+
+class DirectionBody(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    answer_body = db.Column(db.String())
+
+
+# db.create_all()
+# db.session.commit()

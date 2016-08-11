@@ -4,7 +4,7 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from test_prof.app.api.__init__ import db, app
 
 
-from .models import Questions, Answers, Directions, Test
+from test_prof.app.api.models import Questions, Answers, Directions, Test
 
 migrate = Migrate(app, db)
 manager = Manager(app)

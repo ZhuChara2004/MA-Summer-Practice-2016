@@ -94,3 +94,10 @@ def get_t():
             {"test": test.name_test, "id": test.id}
         )
     return list_test
+
+
+def direction_a_to_json(direction_answer):
+    return {
+        'id': direction_answer.id,
+        'body': direction_answer.answer_body
+    }
