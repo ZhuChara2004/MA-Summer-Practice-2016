@@ -1,0 +1,204 @@
+*
+	margin: 0
+	padding: 0
+
+body
+	background: #fff
+	color: #333333
+	font-family: 'Open Sans', serif
+
+a
+	text-decoration: none
+
+ul
+	list-style: none
+
+#content
+	width: 80%
+	margin: auto
+	text-align: center
+	padding-bottom: 50px;
+
+	.head-text
+		font-size: 45px
+		margin-top: 100px
+
+	.test
+		margin-top: 50px
+
+		input[type=radio]
+			vertical-align: top
+			margin: 6px 20px 0 0
+			width: 24px
+			height: 24px
+
+		a
+			padding: 20px 40px
+			margin-right: 10px
+
+	.image
+		margin: 30px 0
+
+	p
+		font-size: 24px
+
+	.result, .answer
+		text-align: left
+		padding: 30px 5px 0
+
+.test .button,
+.login .button,
+.new-test .button
+	margin-top: 50px
+	font-size: 24px
+	border-radius: 50px
+	border: 1px solid #acacac
+	background: #fff
+	color: #acacac
+	margin-bottom: 50px
+
+.test button,
+.login button,
+.new-test button
+	padding: 23px 25px
+
+.button:hover,
+#admin-content h1 a:hover
+	background: #f04933
+	color: #fff
+	border: 1px solid #f04933
+
+.button
+	&:hover
+		cursor: pointer
+	&:focus
+		outline: none
+
+.login
+	width: 100%
+	min-height: 300px
+	border: 1px solid #acacac
+	margin: 250px auto
+
+	input
+		width: 80%
+
+.login input,
+.new-test input
+	padding: 10px
+	border-radius: 10px
+	outline: none
+	box-shadow: 0px 0px 3px #ccc, 0 10px 15px #eee inset
+	border: 1px solid #aaa
+	margin-top: 20px
+
+#admin-content
+	width: 80%
+	margin: auto
+	text-align: center
+
+	h1
+		margin-top: 100px
+		margin-bottom: 50px
+
+		a
+			margin-top: 50px
+			font-size: 24px
+			border-radius: 50px
+			border: 1px solid #acacac
+			background: #fff
+			color: #acacac
+			padding: 10px
+			margin-left: 20px
+
+	p
+		margin-top: 20px
+
+		a
+			color: #333333
+			font-size: 24px
+
+			&:hover
+				text-decoration: underline
+
+.update
+	margin-left: 50px
+	color: #acacac !important
+
+	&:hover
+		color: #f04933 !important
+
+.new-test
+	a
+		padding: 20px 40px
+		margin-left: 20px
+
+	input
+		width: 65%
+
+.input-answer
+	margin-left: 60px
+	width: 60% !important
+
+.rout-to-main
+	color: #acacac
+
+	&:hover
+		text-decoration: underline
+
+#listTest
+	margin-top: 50px
+	font-size: 24px
+	text-align: left
+
+	p
+		padding: 5px 0
+
+	a
+		color: #333333
+
+		&:hover
+			color: #f04933
+
+.header
+	width: 80%
+	margin: auto
+	border-bottom: 1px solid #666666
+
+.finish-test button
+	margin-left: 10px
+	font-size: 18px
+	color: #666666
+	border: none
+	background: #fff
+
+	&:hover
+		cursor: pointer
+		text-decoration: underline
+		outline: none
+
+#number_question_in_list
+	font-size: 18px
+	float: left
+	margin-top: 15px
+	color: #666666
+
+@media(max-width:519px)
+	.test .button,
+	.login .button,
+	.new-test .button
+		margin-bottom: 10px
+		margin-top: 30px
+
+@media(min-width:500px)
+	.login
+		width: 400px
+
+	.test button,
+	.login button,
+	.new-test button
+		padding: 23px 40px
+
+@media(min-width:800px)
+	#content
+		width: 800px

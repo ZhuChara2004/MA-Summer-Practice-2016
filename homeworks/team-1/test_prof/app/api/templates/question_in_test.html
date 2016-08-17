@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Профорієнтаційний тест</title>
+    <link rel="stylesheet" href="../static/css/main.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:600,400&subset=latin,cyrillic' rel='stylesheet'
+          type='text/css'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<script src="js/run_test.js"></script>-->
+</head>
+<body>
+<div class="header">
+    <h1 id="number_question_in_list"></h1>
+    <form action="/" class="finish-test">
+        <h1>
+            <button onclick="deleteStorage()">Закінчити тест</button>
+        </h1>
+    </form>
+</div>
+<div id="content">
+    <h1 class="head-text">
+        <div id="question_body"></div>
+    </h1>
+    <div id="block_answers_in_q" class="test"></div>
+</div>
+<script type="text/javascript">
+    var ids = [];
+    var xmlhttp = new XMLHttpRequest();
+    var list_answers;
+    var dir_answers;
+    var l;
+    var parse_dir_answers;
+    var id;
+    var direction = 0;
+    var tmp_ans = [];
+    runTest();
+    function runTest() {
+        list_answers = localStorage.getItem("list_answ");
+        dir_answers = localStorage.getItem("dir_answ");
+//        localStorage.removeItem("list_answ");
+        l = JSON.parse(list_answers);
+        parse_dir_answers = JSON.parse(dir_answers);
+        id = '{{t_id}}';
+        if (list_answers == null) {
+            getListQuestionsIds(id, direction)
+        } else {
+//            alert("local storage exist");
+//            alert(JSON.stringify(l));
+            nextQuestion()
+        }
+    }
+
+    function deleteStorage() {
+        localStorage.removeItem("list_answ");
+        localStorage.removeItem("dir_answ")
+    }
+
+    function nextQuestion() {
+        var obj = l;
+        endPart = false;
+        for (qw = 0; qw < obj["count"]; qw++) {
+            if (obj["answers"][qw] == null) {
+                getQuestion(qw, obj);
+                endPart = false;
+                break
+            }
+            else {
+                endPart = true;
+            }
+        }
+        if (endPart) {
+            calculationAnswers(l["answers"])
+        }
+    }
+    var max;
+    function calculationAnswers(list) {
+//        alert(list);
+        var listMap = {};
+        var listKey = [];
+        for (i = 0; i < list.length; i++) {
+            var value = 0;
+            count = 0;
+            for (j = 0; j < list.length; j++) {
+                value = list[i];
+                if (value == list[j]) {
+                    count++
+                }
+            }
+            listMap[list[i]] = count;
+            listKey[i] = list[i];
+        }
+        max = 0;
+        v = 0;
+        var key = 0;
+        for (i = 0; i < listKey.length; i++) {
+            key = listKey[i];
+            for (j = 0; j < listKey.length; j++) {
+                v = listMap[key];
+                if (v >= listMap[listKey[j]]) {
+                    max = key;
+                }
+            }
+        }
+        var povt = false;
+        var povtL = [max];
+        keyz = Object.keys(listMap);
+        for (z = 0; z < Object.keys(listMap).length; z++) {
+//            alert("listM = " + keyz[z] + ":" + listMap[keyz[z]]);
+            if (listMap[keyz[z]] == listMap[max] && keyz[z] != max) {
+                povtL.push(keyz[z]);
+                povt = true;
+            }
+        }
+//        alert(max + " " + povt + " l=" + povtL);
+
+//        parse_dir_answers["answ"].push(max);
+//        localStorage.setItem("dir_answ", JSON.stringify(parse_dir_answers));
+        if (povt) {
+            getControlQuestion(povtL);
+//            getListQuestionsIds(id, max)
+        } else {
+            if (direction == 0) {
+                tmp_ans[0] = max;
+            } else {
+                tmp_ans[1] = max
+            }
+            direction = max;
+            parse_dir_answers["answ"].push(parseInt(direction));
+//            alert(JSON.stringify(parse_dir_answers));
+            localStorage.setItem("dir_answ", JSON.stringify(parse_dir_answers));
+            getListQuestionsIds(id, direction)
+        }
+    }
+
+    function saveToAnsw() {
+//        alert(JSON.stringify(parse_dir_answers));
+        var answer = document.getElementsByName("answer");
+        var answCount = answer.length;
+        for (a = 0; a < answCount; a++) {
+            if (answer[a].checked) {
+//                alert(answer[a].value);
+                if (direction == 0) {
+                    parse_dir_answers["answ"][0] = parseInt(answer[a].value);
+                    tmp_ans[0] = parseInt(answer[a].value);
+                } else {
+                    parse_dir_answers["answ"][1] = parseInt(answer[a].value);
+                    tmp_ans[1] = parseInt(answer[a].value)
+                }
+//                parse_dir_answers["answ"][0]parseInt(answer[a].value));
+//                alert(JSON.stringify(parse_dir_answers));
+                localStorage.setItem("dir_answ", JSON.stringify(parse_dir_answers));
+                direction = parseInt(answer[a].value);
+                getListQuestionsIds(id, direction)
+            }
+        }
+    }
+
+    function parseControl(responseText, listP) {
+        var respControl = JSON.parse(responseText);
+//        alert(JSON.stringify(respControl));
+        q_id = respControl["id"];
+        var outAsnwers = "";
+        document.getElementById("question_body").innerHTML = respControl["body"];
+        outAsnwers += "<div id='myForm'>";
+        for (i = 0; i < respControl["answers"].length; i++) {
+
+            for (indexLp = 0; indexLp < listP.length; indexLp++) {
+                if (listP[indexLp] == respControl["answers"][i]["direction"]) {
+                    outAsnwers += "<p class='answer'><input type='radio' id='radio" + respControl["answers"][i]["direction"] + "' " +
+                            "name='answer' value='" + respControl["answers"][i]["direction"] + "'>" +
+                            "<label for='radio" + respControl["answers"][i]["direction"] + "'" +
+                            ">" + respControl["answers"][i]["body"] + "</label></p>"
+                }
+            }
+        }
+        outAsnwers += "</div>";
+        outAsnwers += "<button onclick='saveToAnsw()' type='submit' class='button'>Далі</input>";
+        document.getElementById("block_answers_in_q").innerHTML = outAsnwers;
+
+
+    }
+
+    function getControlQuestion(listP) {
+//        alert("Control");
+        var url = "http://127.0.0.1:5000/api/v1.0/control/" + id + "/direction/" + direction;
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+//                alert(listP);
+                parseControl(xmlhttp.responseText, listP);
+            }
+        };
+        xmlhttp.open("GET", url, false);
+        xmlhttp.send();
+    }
+
+    function getQuestion(questionId, obj) {
+        var url = "http://127.0.0.1:5000/api/v1.0/question/" + obj["questions"][questionId];
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                parseQuestion(xmlhttp.responseText, questionId, obj);
+            }
+        };
+        xmlhttp.open("GET", url, false);
+        xmlhttp.send();
+    }
+
+    function parseQuestion(result, questionId, storage) {
+        var obj = JSON.parse(result);
+        st = storage;
+        q_id = questionId;
+        var outAsnwers = "";
+        document.getElementById("question_body").innerHTML = obj["question"]["body"];
+        document.getElementById("number_question_in_list").innerHTML = questionId + 1 + " із " + storage["count"];
+        ans = obj["question"];
+        outAsnwers += "<div id='myForm'>";
+        for (i = 0; i < ans["answers"].length; i++) {
+            outAsnwers += "<p class='answer'><input type='radio' id='radio" + ans["answers"][i]["direction"] + "' " +
+                    "name='answer' value='" + ans["answers"][i]["direction"] + "'>" +
+                    "<label for='radio" + ans["answers"][i]["direction"] + "'" +
+                    ">" + ans["answers"][i]["body"] + "</label></p>"
+        }
+        outAsnwers += "</div>";
+        outAsnwers += "<button onclick='calcAnswer(q_id)' type='submit' class='button'>Далі</input>";
+        document.getElementById("block_answers_in_q").innerHTML = outAsnwers;
+    }
+
+    function calcAnswer(questionId) {
+        var answer = document.getElementsByName("answer");
+        var answCount = answer.length;
+        for (a = 0; a < answCount; a++) {
+            if (answer[a].checked) {
+                l["answers"][questionId] = parseInt(answer[a].value);
+                localStorage.setItem("list_answ", JSON.stringify(l));
+                nextQuestion()
+            }
+        }
+    }
+
+    function getListQuestionsIds(id, direction) {
+        localStorage.removeItem("list_answ");
+        var url = "http://127.0.0.1:5000/api/v1.0/questions/" + id + "/direction/" + direction;
+
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                parseListIds(xmlhttp.responseText);
+            }
+        };
+        xmlhttp.open("GET", url, false);
+        xmlhttp.send();
+    }
+
+    function parseListIds(response) {
+        var json = JSON.parse(response);
+        if (json["list_ids"].length != 0) {
+            for (i = 0; i < json["list_ids"].length; i++) {
+                ids[i] = json["list_ids"][i]["question_id"]
+            }
+            list_answers = '{"count": "' + parseInt(json["list_ids"].length) + '", "answers":[], "questions":[' + ids + ']}';
+            localStorage.setItem("list_answ", list_answers);
+            dir_answers = '{"answ":[]}';
+            localStorage.setItem("dir_answ", dir_answers);
+//            alert("local storage not exist");
+//            nextQuestion();
+            runTest()
+        } else {
+//            finish test !!!!!!!!!!!!!!!!!!!!!!111
+//            alert("FINISH");
+            finish();
+//            localStorage.removeItem("list_answ")
+
+        }
+    }
+
+    function getDirection(id) {
+        var url = "http://127.0.0.1:5000/api/v1.0/direction/" + id;
+//        localStorage.removeItem("list_answ");
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                return JSON.stringify(JSON.parse(xmlhttp.responseText));
+            }
+        };
+        xmlhttp.open("GET", url, false);
+        xmlhttp.send();
+    }
+
+    function finish() {
+        d = localStorage.getItem("dir_answ");
+//        alert(JSON.stringify(JSON.parse(d)));
+        var faculty;
+        var response;
+        d = JSON.parse(d);
+//        alert(JSON.stringify(d));
+//        alert(tmp_ans);
+
+//        faculty = getDirection(d["answ"][0]);
+
+        var url = "http://127.0.0.1:5000/api/v1.0/direction/" + tmp_ans[0];
+//        var url = "http://127.0.0.1:5000/api/v1.0/direction/" + d["answ"][0];
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                faculty = JSON.parse(xmlhttp.responseText)
+            }
+        };
+        xmlhttp.open("GET", url, false);
+        xmlhttp.send();
+
+        // it`s very bad
+
+//        alert("bla bla" + faculty["direction"]);
+
+//        faculty = JSON.parse(getDirection(d["answ"][0]));
+//        person = JSON.parse(getDirection(d["answ"][1]));
+//        alert(JSON.stringify(res));
+
+        out = "<div id='content'>" +
+                "<h1 class='head-text'>Найкраще для тебе підійде освітній напрям</h1>" +
+                "<h1 class='head-text'>" + faculty["direction"] + "</h1>" +
+                "<img src='../static/img/" + tmp_ans[1] + ".jpg' alt='' class='image'>" +
+                "<p class='result'>";
+//                "</p><p class='result'>" +
+//                "В майбутньому ти можеш стати як Коко Шанель, яку по праву вважають найважливішою фігурою в історії моди XX століття. Шанель принесла в жіночу моду приталений жакет і маленьку чорну сукню, під її керівництвом було створено всесвітньо відомі парфуми «Chanel № 5». Вплив Коко на високу моду був такий сильний, що її — єдину з історії моди — журнал «Тime» вніс до списку ста найвпливовіших людей XX століття." +
+//                "</p><p style='text-align: center; color: #acacac;' class='result'>" +
+//                "Цікавий факт! Саме Коко Шанель запровадила моду на засмагу. Це сталось на початку 1920-х рр., коли вона повернулась із відпочинку на яхті із золотаво–бронзовою шкірою. Доти взірцевою була порцеляново біла шкіра." +
+//                "</p><p style='text-align: center; font-weight: bold;' class='result'>" +
+//        out += "Дану професію ти можеш опанувати обравши навчання у ЧДБК за освітньою програмою «" + faculty["direction"] + "».";
+//        if (d["answ"][1] != null) {
+        if (tmp_ans[1] != null) {
+            var url = "http://127.0.0.1:5000/api/v1.0/dir/" + tmp_ans[1];
+//            var url = "http://127.0.0.1:5000/api/v1.0/direction/" + d["answ"][1];
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    response = JSON.parse(xmlhttp.responseText)
+                }
+            };
+            xmlhttp.open("GET", url, false);
+            xmlhttp.send();
+            out += response["body"];
+        }
+        out += "</p></div>";
+        document.getElementById("content").innerHTML = out;
+    }
+
+</script>
+</body>
+</html>
